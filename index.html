@@ -7,344 +7,628 @@
   <meta name="description" content="Sung A (Sophie) Kim — Founder of the International Digital Asset Policy Institute (IDAPI), Co-founder of BTCON Seoul & Hanbitco, Inaugural Chair of the Exchange Committee at the Korea Blockchain Association.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
   <style>
     *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+
     :root{
-      --bg:#0a0a0b;
-      --surface:#111113;
-      --surface-2:#1a1a1e;
-      --border:#2a2a2f;
-      --text:#f0f0f2;
-      --text-secondary:#9a9aa0;
-      --accent:#c9a55a;
-      --accent-dim:#c9a55a22;
+      /* Fonts — Inter Tight mirrors Coinbase Sans geometric proportions */
+      --font-sans:'Inter Tight',system-ui,-apple-system,sans-serif;
+      --font-mono:'IBM Plex Mono',monospace;
+
+      /* Typography Scale (Coinbase CDS: 8px base, Display1=64px) */
+      --fs-display:clamp(2.75rem,7vw,4rem);
+      --fs-h1:clamp(2rem,4vw,2.5rem);
+      --fs-h2:clamp(1.5rem,3vw,1.75rem);
+      --fs-body:1rem;
+      --fs-small:0.875rem;
+      --fs-caption:0.8125rem;
+      --fs-micro:0.75rem;
+
+      /* Coinbase Colors */
+      --blue:#0052FF;
+      --blue-light:#4D82FF;
+      --blue-dark:#003ECB;
+      --blue-dim:rgba(0,82,255,0.08);
+      --blue-glow:rgba(0,82,255,0.15);
+
+      /* Neutrals (Coinbase gray scale) */
+      --gray-0:#FFFFFF;
+      --gray-5:#F5F5F7;
+      --gray-10:#E8E8ED;
+      --gray-20:#D1D1D8;
+      --gray-40:#8A8A93;
+      --gray-60:#5B5B63;
+      --gray-80:#2C2C31;
+      --gray-90:#1A1A1F;
+      --gray-95:#111114;
+      --gray-100:#0A0B0D;
+
+      /* Semantic */
+      --bg:var(--gray-100);
+      --bg-secondary:var(--gray-95);
+      --bg-tertiary:var(--gray-90);
+      --surface:var(--gray-95);
+      --surface-hover:var(--gray-90);
+      --border:rgba(255,255,255,0.08);
+      --border-hover:rgba(255,255,255,0.15);
+      --text:var(--gray-0);
+      --text-secondary:var(--gray-40);
+      --text-tertiary:var(--gray-60);
+      --accent:var(--blue);
+      --accent-hover:var(--blue-light);
+
+      /* Spacing (8px base) */
+      --space-1:8px;
+      --space-2:16px;
+      --space-3:24px;
+      --space-4:32px;
+      --space-5:40px;
+      --space-6:48px;
+      --space-8:64px;
+      --space-10:80px;
+
+      /* Radii (Coinbase CDS) */
+      --radius-sm:8px;
+      --radius-md:12px;
+      --radius-lg:16px;
+      --radius-xl:24px;
+      --radius-full:100000px;
+
+      /* Motion */
+      --ease-out:cubic-bezier(0.16,1,0.3,1);
+      --duration:0.3s;
+      --duration-lg:0.6s;
     }
-    html{scroll-behavior:smooth;font-size:16px}
+
+    html{scroll-behavior:smooth}
+
     body{
-      font-family:'Inter',system-ui,-apple-system,sans-serif;
+      font-family:var(--font-sans);
       background:var(--bg);
       color:var(--text);
-      line-height:1.7;
+      line-height:1.5;
+      font-size:var(--fs-body);
       -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
       overflow-x:hidden;
     }
 
-    /* Scrollbar */
+    /* Scrollbar — minimal Coinbase style */
     ::-webkit-scrollbar{width:6px}
     ::-webkit-scrollbar-track{background:var(--bg)}
-    ::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px}
+    ::-webkit-scrollbar-thumb{background:var(--gray-80);border-radius:3px}
 
-    /* Navigation */
+    /* ===== NAVIGATION — clean, Coinbase-style top bar ===== */
     nav{
-      position:fixed;top:0;left:0;right:0;z-index:100;
-      padding:1.25rem 2rem;
-      background:rgba(10,10,11,0.8);
+      position:fixed;top:0;left:0;right:0;z-index:1000;
+      padding:0 var(--space-3);
+      height:64px;
+      display:flex;align-items:center;
+      background:rgba(10,11,13,0.85);
       backdrop-filter:blur(20px);
+      -webkit-backdrop-filter:blur(20px);
       border-bottom:1px solid transparent;
-      transition:border-color 0.3s;
+      transition:border-color var(--duration);
     }
     nav.scrolled{border-bottom-color:var(--border)}
     .nav-inner{
-      max-width:1100px;margin:0 auto;
+      max-width:1200px;width:100%;margin:0 auto;
       display:flex;justify-content:space-between;align-items:center;
     }
     .nav-logo{
-      font-family:'Playfair Display',serif;
-      font-size:1.15rem;font-weight:600;
+      font-family:var(--font-sans);
+      font-size:1.125rem;font-weight:700;
       color:var(--text);text-decoration:none;
       letter-spacing:-0.02em;
+      display:flex;align-items:center;gap:var(--space-1);
     }
-    .nav-links{display:flex;gap:2rem;list-style:none}
+    .nav-logo-icon{
+      width:28px;height:28px;
+      background:var(--blue);
+      border-radius:50%;
+      display:flex;align-items:center;justify-content:center;
+    }
+    .nav-logo-icon span{
+      color:white;font-weight:800;font-size:0.8rem;
+      line-height:1;
+    }
+    .nav-links{display:flex;gap:var(--space-4);list-style:none}
     .nav-links a{
       color:var(--text-secondary);text-decoration:none;
-      font-size:0.85rem;font-weight:400;
-      letter-spacing:0.03em;
-      transition:color 0.3s;
+      font-size:var(--fs-small);font-weight:500;
+      transition:color var(--duration);
+      padding:var(--space-1) 0;
     }
     .nav-links a:hover{color:var(--text)}
-    .nav-toggle{display:none;background:none;border:none;color:var(--text);cursor:pointer;padding:0.5rem}
+    .nav-cta{
+      background:var(--blue);color:white;
+      border:none;border-radius:var(--radius-full);
+      padding:var(--space-1) var(--space-2);
+      font-family:var(--font-sans);
+      font-size:var(--fs-small);font-weight:600;
+      text-decoration:none;
+      transition:background var(--duration);
+      cursor:pointer;
+    }
+    .nav-cta:hover{background:var(--blue-light)}
 
-    /* Hero */
+    /* Hamburger */
+    .nav-toggle{
+      display:none;background:none;border:none;
+      cursor:pointer;width:44px;height:44px;
+      position:relative;z-index:1001;
+    }
+    .nav-toggle span{
+      display:block;width:20px;height:2px;
+      background:var(--text);
+      position:absolute;left:12px;
+      transition:transform 0.4s var(--ease-out),opacity 0.3s;
+      border-radius:1px;
+    }
+    .nav-toggle span:nth-child(1){top:16px}
+    .nav-toggle span:nth-child(2){top:22px}
+    .nav-toggle span:nth-child(3){top:28px}
+    .nav-toggle.active span:nth-child(1){top:22px;transform:rotate(45deg)}
+    .nav-toggle.active span:nth-child(2){opacity:0}
+    .nav-toggle.active span:nth-child(3){top:22px;transform:rotate(-45deg)}
+
+    /* Mobile overlay */
+    .nav-overlay{
+      position:fixed;inset:0;z-index:999;
+      background:var(--bg);
+      display:flex;flex-direction:column;
+      justify-content:center;align-items:center;
+      gap:var(--space-5);
+      opacity:0;visibility:hidden;
+      transition:opacity 0.4s var(--ease-out),visibility 0.4s;
+    }
+    .nav-overlay.open{opacity:1;visibility:visible}
+    .nav-overlay a{
+      font-family:var(--font-sans);
+      font-size:clamp(1.5rem,4vw,2rem);
+      font-weight:600;color:var(--text);
+      text-decoration:none;
+      opacity:0;transform:translateY(16px);
+      transition:opacity 0.4s var(--ease-out),
+                 transform 0.4s var(--ease-out),
+                 color var(--duration);
+    }
+    .nav-overlay.open a{opacity:1;transform:translateY(0)}
+    .nav-overlay a:nth-child(1){transition-delay:0.05s}
+    .nav-overlay a:nth-child(2){transition-delay:0.1s}
+    .nav-overlay a:nth-child(3){transition-delay:0.15s}
+    .nav-overlay a:nth-child(4){transition-delay:0.2s}
+    .nav-overlay a:nth-child(5){transition-delay:0.25s}
+    .nav-overlay a:hover{color:var(--accent)}
+
+    /* ===== HERO — Coinbase bold statement style ===== */
     .hero{
       min-height:100vh;
-      display:flex;align-items:center;justify-content:center;
-      padding:8rem 2rem 6rem;
-      position:relative;
+      display:flex;align-items:center;
+      padding:calc(64px + var(--space-10)) var(--space-3) var(--space-10);
+      position:relative;overflow:hidden;
     }
     .hero::before{
       content:'';position:absolute;
       top:0;left:50%;transform:translateX(-50%);
-      width:600px;height:600px;
-      background:radial-gradient(circle,var(--accent-dim) 0%,transparent 70%);
+      width:100%;max-width:900px;height:70vh;
+      background:radial-gradient(ellipse at 50% 0%,var(--blue-glow) 0%,transparent 70%);
       pointer-events:none;
     }
     .hero-content{
-      max-width:720px;text-align:center;
+      max-width:1200px;width:100%;margin:0 auto;
+      text-align:center;
       position:relative;z-index:1;
     }
-    .hero-label{
-      display:inline-block;
-      font-size:0.75rem;font-weight:500;
-      letter-spacing:0.15em;text-transform:uppercase;
+    .hero-badge{
+      display:inline-flex;align-items:center;gap:6px;
+      font-family:var(--font-mono);
+      font-size:var(--fs-caption);font-weight:500;
       color:var(--accent);
-      margin-bottom:1.5rem;
-      padding:0.4rem 1rem;
-      border:1px solid var(--accent);
-      border-radius:100px;
+      background:var(--blue-dim);
+      padding:6px 14px;
+      border-radius:var(--radius-full);
+      border:1px solid rgba(0,82,255,0.2);
+      margin-bottom:var(--space-4);
+      opacity:0;animation:fadeUp 0.6s var(--ease-out) 0.1s both;
+    }
+    .hero-badge::before{
+      content:'';width:6px;height:6px;
+      background:var(--blue);border-radius:50%;
+      animation:blink 2s ease-in-out infinite;
+    }
+    @keyframes blink{
+      0%,100%{opacity:1}50%{opacity:0.3}
     }
     .hero h1{
-      font-family:'Playfair Display',serif;
-      font-size:clamp(2.5rem,5vw,4rem);
-      font-weight:600;
-      line-height:1.15;
+      font-size:var(--fs-display);
+      font-weight:700;
+      line-height:1.1;
       letter-spacing:-0.03em;
-      margin-bottom:1.5rem;
+      margin-bottom:var(--space-3);
+      opacity:0;animation:fadeUp 0.7s var(--ease-out) 0.2s both;
     }
-    .hero h1 .highlight{
-      background:linear-gradient(135deg,var(--accent),#e8d5a0);
-      -webkit-background-clip:text;
-      -webkit-text-fill-color:transparent;
-      background-clip:text;
-    }
-    .hero p{
-      font-size:1.1rem;
+    .hero h1 .blue{color:var(--blue)}
+    .hero-subtitle{
+      font-size:clamp(1rem,1.5vw,1.25rem);
       color:var(--text-secondary);
-      max-width:540px;margin:0 auto 2.5rem;
-      line-height:1.8;
+      max-width:600px;margin:0 auto var(--space-5);
+      line-height:1.7;
+      opacity:0;animation:fadeUp 0.7s var(--ease-out) 0.35s both;
     }
-    .hero-links{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
-    .hero-links a{
-      display:inline-flex;align-items:center;gap:0.5rem;
-      padding:0.7rem 1.5rem;
-      font-size:0.85rem;font-weight:500;
+    .hero-actions{
+      display:flex;gap:var(--space-2);justify-content:center;flex-wrap:wrap;
+      opacity:0;animation:fadeUp 0.7s var(--ease-out) 0.5s both;
+    }
+    .btn{
+      display:inline-flex;align-items:center;gap:var(--space-1);
+      padding:14px 28px;
+      font-family:var(--font-sans);
+      font-size:var(--fs-body);font-weight:600;
       text-decoration:none;
-      border-radius:8px;
-      transition:all 0.3s;
+      border-radius:var(--radius-full);
+      transition:all var(--duration) var(--ease-out);
+      min-height:48px;border:none;cursor:pointer;
     }
     .btn-primary{
-      background:var(--accent);color:var(--bg);
+      background:var(--blue);color:white;
     }
-    .btn-primary:hover{background:#d4b265;transform:translateY(-1px)}
-    .btn-secondary{
-      border:1px solid var(--border);color:var(--text);
-      background:transparent;
+    .btn-primary:hover{
+      background:var(--blue-light);
+      transform:translateY(-1px);
+      box-shadow:0 4px 24px rgba(0,82,255,0.3);
     }
-    .btn-secondary:hover{border-color:var(--text-secondary);transform:translateY(-1px)}
+    .btn-outline{
+      background:transparent;color:var(--text);
+      border:1.5px solid var(--border-hover);
+    }
+    .btn-outline:hover{
+      border-color:var(--text);
+      transform:translateY(-1px);
+    }
+    .btn svg{width:16px;height:16px}
 
-    /* Sections */
-    section{padding:5rem 2rem}
-    .section-inner{max-width:1100px;margin:0 auto}
+    @keyframes fadeUp{
+      from{opacity:0;transform:translateY(24px)}
+      to{opacity:1;transform:translateY(0)}
+    }
+
+    /* ===== SECTIONS ===== */
+    section{padding:var(--space-10) var(--space-3)}
+    .section-inner{max-width:1200px;margin:0 auto}
+    .section-header{margin-bottom:var(--space-6)}
     .section-label{
-      font-size:0.7rem;font-weight:600;
-      letter-spacing:0.2em;text-transform:uppercase;
+      font-family:var(--font-mono);
+      font-size:var(--fs-micro);font-weight:500;
+      letter-spacing:0.1em;text-transform:uppercase;
       color:var(--accent);
-      margin-bottom:0.75rem;
+      margin-bottom:var(--space-1);
     }
     .section-title{
-      font-family:'Playfair Display',serif;
-      font-size:clamp(1.8rem,3vw,2.4rem);
-      font-weight:600;
+      font-size:var(--fs-h1);
+      font-weight:700;
       letter-spacing:-0.02em;
-      margin-bottom:3rem;
+      line-height:1.2;
+    }
+    .section-desc{
+      font-size:var(--fs-body);
+      color:var(--text-secondary);
+      margin-top:var(--space-1);
+      max-width:600px;
+      line-height:1.6;
     }
 
-    /* About */
+    /* Divider — Coinbase subtle line */
+    .divider{
+      max-width:1200px;margin:0 auto;
+      height:1px;background:var(--border);
+    }
+
+    /* Reveal */
+    .reveal{
+      opacity:0;transform:translateY(24px);
+      transition:opacity var(--duration-lg) var(--ease-out),
+                 transform var(--duration-lg) var(--ease-out);
+      transition-delay:calc(var(--stagger,0) * 80ms);
+    }
+    .reveal.visible{opacity:1;transform:translateY(0)}
+
+    /* ===== ABOUT ===== */
     .about-grid{
-      display:grid;grid-template-columns:1fr 1fr;gap:4rem;
-      align-items:start;
+      display:grid;grid-template-columns:1fr;gap:var(--space-5);
     }
     .about-text p{
-      color:var(--text-secondary);margin-bottom:1.25rem;
-      font-size:0.95rem;
+      color:var(--text-secondary);
+      font-size:var(--fs-body);
+      line-height:1.7;margin-bottom:var(--space-2);
     }
+    .about-text p:last-child{margin-bottom:0}
     .about-stats{
-      display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;
+      display:grid;grid-template-columns:1fr 1fr;gap:var(--space-2);
     }
     .stat-card{
       background:var(--surface);
       border:1px solid var(--border);
-      border-radius:12px;
-      padding:1.5rem;
-      transition:border-color 0.3s;
+      border-radius:var(--radius-lg);
+      padding:var(--space-3);
+      transition:border-color var(--duration),transform var(--duration) var(--ease-out);
     }
-    .stat-card:hover{border-color:var(--accent)}
+    .stat-card:hover{
+      border-color:var(--accent);
+      transform:translateY(-2px);
+    }
     .stat-number{
-      font-family:'Playfair Display',serif;
-      font-size:2rem;font-weight:600;
+      font-size:2rem;font-weight:700;
       color:var(--accent);
-      margin-bottom:0.25rem;
+      margin-bottom:4px;
+      letter-spacing:-0.02em;
     }
-    .stat-label{font-size:0.8rem;color:var(--text-secondary)}
+    .stat-label{
+      font-size:var(--fs-caption);
+      color:var(--text-secondary);
+      line-height:1.4;
+    }
 
-    /* Timeline */
-    .timeline{position:relative;padding-left:2rem}
+    /* ===== TIMELINE ===== */
+    .timeline{position:relative;padding-left:var(--space-3)}
     .timeline::before{
       content:'';position:absolute;
       left:0;top:0;bottom:0;
-      width:1px;background:var(--border);
+      width:2px;background:var(--border);
+      border-radius:1px;
     }
     .timeline-item{
       position:relative;
-      padding:0 0 3rem 2rem;
+      padding:0 0 var(--space-5) var(--space-3);
     }
     .timeline-item::before{
       content:'';position:absolute;
-      left:-2rem;top:0.5rem;
-      width:9px;height:9px;
+      left:calc(-1 * var(--space-3) - 5px);top:6px;
+      width:12px;height:12px;
       border-radius:50%;
+      background:var(--bg);
+      border:2px solid var(--gray-60);
+      transition:border-color var(--duration);
+    }
+    .timeline-item.current::before{
+      border-color:var(--accent);
       background:var(--accent);
-      border:2px solid var(--bg);
-      transform:translateX(-4px);
+      box-shadow:0 0 0 4px var(--blue-dim);
     }
     .timeline-item:last-child{padding-bottom:0}
     .timeline-date{
-      font-size:0.75rem;font-weight:500;
-      color:var(--accent);
-      letter-spacing:0.08em;
-      margin-bottom:0.4rem;
+      font-family:var(--font-mono);
+      font-size:var(--fs-micro);font-weight:500;
+      color:var(--text-secondary);
+      letter-spacing:0.02em;
+      margin-bottom:4px;
     }
+    .timeline-item.current .timeline-date{color:var(--accent)}
     .timeline-role{
-      font-size:1.05rem;font-weight:600;
-      margin-bottom:0.25rem;
+      font-size:var(--fs-body);font-weight:600;
+      margin-bottom:2px;
     }
     .timeline-company{
-      font-size:0.9rem;color:var(--text-secondary);
-      margin-bottom:0.5rem;
+      font-size:var(--fs-small);color:var(--text-secondary);
+      margin-bottom:var(--space-1);
     }
     .timeline-desc{
-      font-size:0.85rem;color:var(--text-secondary);
-      line-height:1.7;
+      font-size:var(--fs-caption);color:var(--text-tertiary);
+      line-height:1.6;max-width:560px;
     }
 
-    /* Ventures */
+    /* Desktop 2-column timeline */
+    @media(min-width:1024px){
+      .timeline{padding-left:0}
+      .timeline::before{left:180px}
+      .timeline-item{
+        display:grid;
+        grid-template-columns:160px 1fr;
+        gap:var(--space-5);
+        padding-left:0;
+      }
+      .timeline-item::before{left:175px}
+      .timeline-date{text-align:right;padding-top:2px}
+    }
+
+    /* ===== VENTURES — Coinbase card grid ===== */
     .ventures-grid{
-      display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
-      gap:1.5rem;
+      display:grid;grid-template-columns:1fr;
+      gap:var(--space-2);
     }
     .venture-card{
       background:var(--surface);
       border:1px solid var(--border);
-      border-radius:16px;
-      padding:2rem;
-      transition:all 0.3s;
-      position:relative;
-      overflow:hidden;
-    }
-    .venture-card::before{
-      content:'';position:absolute;
-      top:0;left:0;right:0;height:2px;
-      background:linear-gradient(90deg,var(--accent),transparent);
-      opacity:0;transition:opacity 0.3s;
+      border-radius:var(--radius-lg);
+      padding:var(--space-4);
+      position:relative;overflow:hidden;
+      transition:border-color var(--duration),transform var(--duration) var(--ease-out),box-shadow var(--duration);
     }
     .venture-card:hover{
-      border-color:var(--accent);
+      border-color:var(--border-hover);
       transform:translateY(-2px);
+      box-shadow:0 8px 32px rgba(0,0,0,0.2);
     }
-    .venture-card:hover::before{opacity:1}
+    .venture-card.featured{
+      background:linear-gradient(135deg,rgba(0,82,255,0.06) 0%,var(--surface) 100%);
+      border-color:rgba(0,82,255,0.2);
+    }
+    .venture-card.featured:hover{border-color:var(--accent)}
+    .venture-featured-tag{
+      font-family:var(--font-mono);
+      font-size:var(--fs-micro);font-weight:500;
+      letter-spacing:0.1em;text-transform:uppercase;
+      color:var(--accent);
+      margin-bottom:var(--space-2);
+    }
     .venture-icon{
       width:48px;height:48px;
-      background:var(--accent-dim);
-      border-radius:12px;
+      background:var(--blue-dim);
+      border-radius:var(--radius-md);
       display:flex;align-items:center;justify-content:center;
-      font-size:1.25rem;
-      margin-bottom:1.25rem;
+      font-size:1.25rem;color:var(--accent);
+      margin-bottom:var(--space-2);
     }
     .venture-card h3{
-      font-size:1.1rem;font-weight:600;
-      margin-bottom:0.5rem;
+      font-size:var(--fs-h2);font-weight:600;
+      margin-bottom:4px;letter-spacing:-0.01em;
     }
     .venture-card .venture-role{
-      font-size:0.8rem;color:var(--accent);
-      font-weight:500;margin-bottom:0.75rem;
+      font-family:var(--font-mono);
+      font-size:var(--fs-micro);color:var(--text-secondary);
+      margin-bottom:var(--space-1);
     }
     .venture-card p{
-      font-size:0.85rem;color:var(--text-secondary);
+      font-size:var(--fs-small);color:var(--text-secondary);
       line-height:1.7;
     }
 
-    /* Speaking */
-    .speaking-list{display:flex;flex-direction:column;gap:1rem}
+    /* ===== SPEAKING ===== */
+    .speaking-list{display:flex;flex-direction:column;gap:var(--space-1)}
     .speaking-item{
-      display:flex;align-items:center;gap:1.5rem;
-      padding:1.5rem 2rem;
-      background:var(--surface);
-      border:1px solid var(--border);
-      border-radius:12px;
-      transition:border-color 0.3s;
+      display:flex;align-items:center;gap:var(--space-2);
+      padding:var(--space-2) var(--space-3);
+      border-radius:var(--radius-md);
+      transition:background var(--duration);
     }
-    .speaking-item:hover{border-color:var(--accent)}
+    .speaking-item:hover{background:var(--surface)}
     .speaking-event{flex:1}
-    .speaking-event h3{font-size:1rem;font-weight:600;margin-bottom:0.2rem}
-    .speaking-event p{font-size:0.85rem;color:var(--text-secondary)}
+    .speaking-event h3{
+      font-size:var(--fs-body);font-weight:600;
+      margin-bottom:2px;
+    }
+    .speaking-event p{
+      font-size:var(--fs-caption);color:var(--text-secondary);
+    }
     .speaking-tag{
-      font-size:0.7rem;font-weight:500;
+      font-family:var(--font-mono);
+      font-size:0.6875rem;font-weight:500;
       color:var(--accent);
-      letter-spacing:0.08em;
+      letter-spacing:0.06em;
       white-space:nowrap;
+      background:var(--blue-dim);
+      padding:4px 10px;
+      border-radius:var(--radius-full);
     }
 
-    /* Contact */
+    /* ===== EDUCATION ===== */
+    .education-content{text-align:center;padding:var(--space-3) 0}
+    .education-card{
+      display:inline-flex;flex-direction:column;align-items:center;
+      padding:var(--space-4);
+      background:var(--surface);
+      border:1px solid var(--border);
+      border-radius:var(--radius-lg);
+      gap:4px;
+    }
+    .education-name{
+      font-size:var(--fs-h2);font-weight:600;
+      letter-spacing:-0.01em;
+    }
+    .education-detail{
+      font-size:var(--fs-small);
+      color:var(--text-secondary);
+    }
+
+    /* ===== CONTACT — Coinbase CTA section ===== */
     .contact-section{
       text-align:center;
-      padding:6rem 2rem;
+      padding:var(--space-10) var(--space-3);
+      position:relative;
     }
-    .contact-section .section-title{margin-bottom:1rem}
-    .contact-section p{
-      color:var(--text-secondary);
-      font-size:0.95rem;
-      margin-bottom:2.5rem;
+    .contact-section::before{
+      content:'';position:absolute;
+      bottom:0;left:50%;transform:translateX(-50%);
+      width:100%;max-width:800px;height:60%;
+      background:radial-gradient(ellipse at 50% 100%,var(--blue-dim),transparent 70%);
+      pointer-events:none;
+    }
+    .contact-section .section-inner{position:relative;z-index:1}
+    .contact-section .section-label{text-align:center}
+    .contact-section .section-title{
+      text-align:center;
+      font-size:var(--fs-h1);
+    }
+    .contact-section .section-desc{
+      text-align:center;
+      margin:var(--space-1) auto var(--space-5);
     }
     .contact-links{
-      display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;
+      display:flex;gap:var(--space-1);justify-content:center;flex-wrap:wrap;
     }
     .contact-link{
-      display:inline-flex;align-items:center;gap:0.6rem;
-      padding:0.75rem 1.5rem;
+      display:inline-flex;align-items:center;gap:var(--space-1);
+      padding:10px 20px;
       background:var(--surface);
       border:1px solid var(--border);
-      border-radius:10px;
-      color:var(--text);
-      text-decoration:none;
-      font-size:0.85rem;font-weight:500;
-      transition:all 0.3s;
+      border-radius:var(--radius-full);
+      color:var(--text);text-decoration:none;
+      font-size:var(--fs-small);font-weight:500;
+      transition:all var(--duration) var(--ease-out);
+      min-height:44px;
     }
-    .contact-link:hover{border-color:var(--accent);transform:translateY(-1px)}
+    .contact-link:hover{
+      border-color:var(--accent);color:var(--accent);
+      transform:translateY(-1px);
+    }
     .contact-link svg{width:16px;height:16px;flex-shrink:0}
 
-    /* Footer */
+    /* ===== FOOTER ===== */
     footer{
-      padding:2rem;
+      padding:var(--space-4) var(--space-3);
       border-top:1px solid var(--border);
       text-align:center;
     }
-    footer p{font-size:0.75rem;color:var(--text-secondary)}
-
-    /* Divider */
-    .divider{
-      max-width:1100px;margin:0 auto;
-      height:1px;background:var(--border);
+    footer p{
+      font-size:var(--fs-caption);
+      color:var(--text-tertiary);
     }
 
-    /* Animations */
-    .fade-in{
-      opacity:0;transform:translateY(30px);
-      transition:opacity 0.7s ease,transform 0.7s ease;
+    /* Focus */
+    a:focus-visible,button:focus-visible{
+      outline:2px solid var(--accent);outline-offset:2px;
     }
-    .fade-in.visible{opacity:1;transform:translateY(0)}
 
-    /* Responsive */
-    @media(max-width:768px){
-      .nav-links{display:none;position:absolute;top:100%;left:0;right:0;
-        flex-direction:column;background:var(--surface);
-        border-bottom:1px solid var(--border);padding:1rem 2rem;gap:1rem}
-      .nav-links.open{display:flex}
-      .nav-toggle{display:block}
-      .about-grid{grid-template-columns:1fr;gap:2rem}
-      .hero{padding:7rem 1.5rem 4rem}
-      section{padding:3.5rem 1.5rem}
-      .speaking-item{flex-direction:column;align-items:flex-start;gap:0.5rem}
-      .ventures-grid{grid-template-columns:1fr}
+    /* Reduced motion */
+    @media(prefers-reduced-motion:reduce){
+      *,*::before,*::after{
+        animation-duration:0.01ms!important;
+        animation-iteration-count:1!important;
+        transition-duration:0.01ms!important;
+      }
+      .reveal{opacity:1;transform:none}
+    }
+
+    /* ===== TABLET 640px+ ===== */
+    @media(min-width:640px){
+      .about-stats{grid-template-columns:repeat(4,1fr)}
+      .ventures-grid{grid-template-columns:repeat(2,1fr)}
+      .ventures-grid .venture-card:first-child{grid-column:span 2}
+    }
+
+    /* ===== DESKTOP 1024px+ ===== */
+    @media(min-width:1024px){
+      .about-grid{grid-template-columns:5fr 7fr;gap:var(--space-8);align-items:start}
+      .about-stats{grid-template-columns:1fr 1fr}
+      .ventures-grid{grid-template-columns:repeat(3,1fr)}
+      .ventures-grid .venture-card:first-child{grid-column:1/3}
+    }
+
+    /* ===== MOBILE ===== */
+    @media(max-width:639px){
+      .nav-links,.nav-cta-wrap{display:none}
+      .nav-toggle{display:flex;align-items:center;justify-content:center}
+      .hero{padding:calc(64px + var(--space-6)) var(--space-2) var(--space-6)}
+      section{padding:var(--space-6) var(--space-2)}
+      .speaking-item{
+        flex-direction:column;align-items:flex-start;gap:var(--space-1);
+        padding:var(--space-2);
+      }
+      .education-card{width:100%;padding:var(--space-3)}
+      .contact-section{padding:var(--space-6) var(--space-2)}
+      .stat-card{padding:var(--space-2)}
+      .stat-number{font-size:1.5rem}
     }
   </style>
 </head>
@@ -353,29 +637,46 @@
   <!-- Navigation -->
   <nav id="navbar">
     <div class="nav-inner">
-      <a href="#" class="nav-logo">SSK</a>
-      <button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Toggle menu">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+      <a href="#" class="nav-logo">
+        <div class="nav-logo-icon"><span>S</span></div>
+        SSK
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
       </button>
       <ul class="nav-links">
         <li><a href="#about">About</a></li>
         <li><a href="#experience">Experience</a></li>
         <li><a href="#ventures">Ventures</a></li>
         <li><a href="#speaking">Speaking</a></li>
-        <li><a href="#contact">Contact</a></li>
       </ul>
+      <div class="nav-cta-wrap">
+        <a href="#contact" class="nav-cta">Get in Touch</a>
+      </div>
     </div>
   </nav>
 
+  <!-- Mobile overlay -->
+  <div class="nav-overlay" id="navOverlay">
+    <a href="#about">About</a>
+    <a href="#experience">Experience</a>
+    <a href="#ventures">Ventures</a>
+    <a href="#speaking">Speaking</a>
+    <a href="#contact">Contact</a>
+  </div>
+
   <!-- Hero -->
   <section class="hero">
-    <div class="hero-content fade-in">
-      <span class="hero-label">Digital Asset Policy &amp; Industry Pioneer</span>
-      <h1>Sung A (Sophie) <span class="highlight">Kim</span></h1>
-      <p>Founder, International Digital Asset Policy Institute (IDAPI). A first-generation policy expert shaping Korea's digital asset regulatory landscape since 2015.</p>
-      <div class="hero-links">
-        <a href="#contact" class="btn-primary">Get in Touch</a>
-        <a href="#experience" class="btn-secondary">View Experience</a>
+    <div class="hero-content">
+      <div class="hero-badge">Digital Asset Policy Pioneer</div>
+      <h1>Sung A (Sophie)<br><span class="blue">Kim</span></h1>
+      <p class="hero-subtitle">Founder, International Digital Asset Policy Institute (IDAPI). A first-generation policy expert shaping Korea's digital asset regulatory landscape since 2015.</p>
+      <div class="hero-actions">
+        <a href="#contact" class="btn btn-primary">
+          Get in Touch
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+        </a>
+        <a href="#experience" class="btn btn-outline">View Experience</a>
       </div>
     </div>
   </section>
@@ -383,29 +684,31 @@
   <!-- About -->
   <div class="divider"></div>
   <section id="about">
-    <div class="section-inner fade-in">
-      <p class="section-label">About</p>
-      <h2 class="section-title">Bridging Policy &amp; Industry in Digital Assets</h2>
+    <div class="section-inner">
+      <div class="section-header reveal" style="--stagger:0">
+        <p class="section-label">About</p>
+        <h2 class="section-title">Bridging Policy & Industry<br>in Digital Assets</h2>
+      </div>
       <div class="about-grid">
-        <div class="about-text">
+        <div class="about-text reveal" style="--stagger:1">
           <p>A first-generation policy expert who has participated in the institutionalization of Korea's digital asset industry. She began her career at a cryptocurrency exchange in 2015, gaining frontline experience in one of the sector's core market infrastructures during its formative years.</p>
           <p>She took part in the founding of the Korea Blockchain Association, where she was involved in early discussions on regulatory frameworks and the policy direction for digital assets. She also served as Chair of the Exchange Committee within the Virtual Asset Policy Task Force, facilitating working-level dialogue between industry participants and policymakers.</p>
           <p>Building on this combined industry and policy experience, she founded the International Digital Asset Policy Institute (IDAPI) to help bridge global standards with Korea's regulatory environment and support coherent policy development.</p>
         </div>
         <div class="about-stats">
-          <div class="stat-card">
+          <div class="stat-card reveal" style="--stagger:2">
             <div class="stat-number">2015</div>
             <div class="stat-label">Bitcoiner since</div>
           </div>
-          <div class="stat-card">
+          <div class="stat-card reveal" style="--stagger:3">
             <div class="stat-number">10+</div>
             <div class="stat-label">Years in Blockchain</div>
           </div>
-          <div class="stat-card">
+          <div class="stat-card reveal" style="--stagger:4">
             <div class="stat-number">1st</div>
             <div class="stat-label">Female Crypto Exchange CEO in Korea</div>
           </div>
-          <div class="stat-card">
+          <div class="stat-card reveal" style="--stagger:5">
             <div class="stat-number">3</div>
             <div class="stat-label">Years as KBA Chairwoman</div>
           </div>
@@ -414,48 +717,62 @@
     </div>
   </section>
 
-  <!-- Experience Timeline -->
+  <!-- Experience -->
   <div class="divider"></div>
   <section id="experience">
-    <div class="section-inner fade-in">
-      <p class="section-label">Experience</p>
-      <h2 class="section-title">Career Journey</h2>
+    <div class="section-inner">
+      <div class="section-header reveal" style="--stagger:0">
+        <p class="section-label">Experience</p>
+        <h2 class="section-title">Career Journey</h2>
+      </div>
       <div class="timeline">
-        <div class="timeline-item">
+        <div class="timeline-item current reveal" style="--stagger:1">
           <div class="timeline-date">Current</div>
-          <div class="timeline-role">Founder</div>
-          <div class="timeline-company">International Digital Asset Policy Institute (IDAPI)</div>
-          <div class="timeline-desc">Leading research and policy dialogue connecting domestic regulatory frameworks with international developments. Bridging global standards with Korea's regulatory environment.</div>
+          <div class="timeline-content">
+            <div class="timeline-role">Founder</div>
+            <div class="timeline-company">International Digital Asset Policy Institute (IDAPI)</div>
+            <div class="timeline-desc">Leading research and policy dialogue connecting domestic regulatory frameworks with international developments. Bridging global standards with Korea's regulatory environment.</div>
+          </div>
         </div>
-        <div class="timeline-item">
+        <div class="timeline-item reveal" style="--stagger:2">
           <div class="timeline-date">2022 — 2024</div>
-          <div class="timeline-role">Member, Virtual Asset Committee</div>
-          <div class="timeline-company">Korean Accounting Association</div>
-          <div class="timeline-desc">Contributed to the development of accounting standards and guidelines for virtual assets within Korea's professional accounting body.</div>
+          <div class="timeline-content">
+            <div class="timeline-role">Member, Virtual Asset Committee</div>
+            <div class="timeline-company">Korean Accounting Association</div>
+            <div class="timeline-desc">Contributed to the development of accounting standards and guidelines for virtual assets within Korea's professional accounting body.</div>
+          </div>
         </div>
-        <div class="timeline-item">
+        <div class="timeline-item reveal" style="--stagger:3">
           <div class="timeline-date">2019 — 2022</div>
-          <div class="timeline-role">Inaugural Chair, Exchange Committee</div>
-          <div class="timeline-company">Korea Blockchain Association</div>
-          <div class="timeline-desc">Elected by member exchanges. Led initiatives to advance the industry's regulatory framework and governance standards over a three-year tenure.</div>
+          <div class="timeline-content">
+            <div class="timeline-role">Inaugural Chair, Exchange Committee</div>
+            <div class="timeline-company">Korea Blockchain Association</div>
+            <div class="timeline-desc">Elected by member exchanges. Led initiatives to advance the industry's regulatory framework and governance standards over a three-year tenure.</div>
+          </div>
         </div>
-        <div class="timeline-item">
+        <div class="timeline-item reveal" style="--stagger:4">
           <div class="timeline-date">2019 — 2020</div>
-          <div class="timeline-role">Chair, Exchange Committee</div>
-          <div class="timeline-company">Virtual Asset Task Force</div>
-          <div class="timeline-desc">Facilitated working-level dialogue between industry and policymakers on the amendment to the Act on Reporting and Using Specified Financial Transaction Information.</div>
+          <div class="timeline-content">
+            <div class="timeline-role">Chair, Exchange Committee</div>
+            <div class="timeline-company">Virtual Asset Task Force</div>
+            <div class="timeline-desc">Facilitated working-level dialogue between industry and policymakers on the amendment to the Act on Reporting and Using Specified Financial Transaction Information.</div>
+          </div>
         </div>
-        <div class="timeline-item">
+        <div class="timeline-item reveal" style="--stagger:5">
           <div class="timeline-date">2017 — 2022</div>
-          <div class="timeline-role">Co-founder &amp; CEO</div>
-          <div class="timeline-company">Hanbitco Exchange</div>
-          <div class="timeline-desc">Founded a regulated Korean crypto exchange — a founding member company of the Korea Blockchain Association. Obtained VASP license and ISO/IEC 27001 security certification.</div>
+          <div class="timeline-content">
+            <div class="timeline-role">Co-founder &amp; CEO</div>
+            <div class="timeline-company">Hanbitco Exchange</div>
+            <div class="timeline-desc">Founded a regulated Korean crypto exchange — a founding member company of the Korea Blockchain Association. Obtained VASP license and ISO/IEC 27001 security certification.</div>
+          </div>
         </div>
-        <div class="timeline-item">
+        <div class="timeline-item reveal" style="--stagger:6">
           <div class="timeline-date">2015</div>
-          <div class="timeline-role">Career Start in Crypto</div>
-          <div class="timeline-company">Cryptocurrency Exchange</div>
-          <div class="timeline-desc">Began career at a cryptocurrency exchange, gaining frontline experience in one of the sector's core market infrastructures during its formative years.</div>
+          <div class="timeline-content">
+            <div class="timeline-role">Career Start in Crypto</div>
+            <div class="timeline-company">Cryptocurrency Exchange</div>
+            <div class="timeline-desc">Began career at a cryptocurrency exchange, gaining frontline experience in one of the sector's core market infrastructures during its formative years.</div>
+          </div>
         </div>
       </div>
     </div>
@@ -464,29 +781,32 @@
   <!-- Ventures -->
   <div class="divider"></div>
   <section id="ventures">
-    <div class="section-inner fade-in">
-      <p class="section-label">Ventures</p>
-      <h2 class="section-title">Key Initiatives</h2>
+    <div class="section-inner">
+      <div class="section-header reveal" style="--stagger:0">
+        <p class="section-label">Ventures</p>
+        <h2 class="section-title">Key Initiatives</h2>
+      </div>
       <div class="ventures-grid">
-        <div class="venture-card">
+        <div class="venture-card featured reveal" style="--stagger:1">
+          <div class="venture-featured-tag">Featured</div>
           <div class="venture-icon">&#9830;</div>
           <h3>IDAPI</h3>
           <div class="venture-role">Founder</div>
           <p>International Digital Asset Policy Institute — bridging global standards with Korea's regulatory environment. Leading research and policy dialogue on digital asset governance.</p>
         </div>
-        <div class="venture-card">
+        <div class="venture-card reveal" style="--stagger:2">
           <div class="venture-icon">&#9733;</div>
           <h3>BTCON Seoul</h3>
           <div class="venture-role">Co-Founder</div>
           <p>Korea's premier Bitcoin conference bringing together global leaders to discuss crypto's evolution — from policy and adoption to institutional strategy and RWA.</p>
         </div>
-        <div class="venture-card">
+        <div class="venture-card reveal" style="--stagger:3">
           <div class="venture-icon">&#9670;</div>
           <h3>Hanbitco Exchange</h3>
           <div class="venture-role">Co-founder &amp; CEO (2017–2022)</div>
           <p>Founding member company of the Korea Blockchain Association. Regulated crypto exchange with VASP license and ISO/IEC 27001 security certification.</p>
         </div>
-        <div class="venture-card">
+        <div class="venture-card reveal" style="--stagger:4">
           <div class="venture-icon">&#9673;</div>
           <h3>ChainAction</h3>
           <div class="venture-role">Founder</div>
@@ -499,39 +819,41 @@
   <!-- Speaking -->
   <div class="divider"></div>
   <section id="speaking">
-    <div class="section-inner fade-in">
-      <p class="section-label">Speaking &amp; Industry</p>
-      <h2 class="section-title">Global Engagements</h2>
+    <div class="section-inner">
+      <div class="section-header reveal" style="--stagger:0">
+        <p class="section-label">Speaking &amp; Industry</p>
+        <h2 class="section-title">Global Engagements</h2>
+      </div>
       <div class="speaking-list">
-        <div class="speaking-item">
+        <div class="speaking-item reveal" style="--stagger:1">
           <div class="speaking-event">
             <h3>BTCON Seoul</h3>
             <p>Korea's first pioneering Bitcoin conference &amp; hackathon</p>
           </div>
           <span class="speaking-tag">CO-FOUNDER</span>
         </div>
-        <div class="speaking-item">
+        <div class="speaking-item reveal" style="--stagger:2">
           <div class="speaking-event">
             <h3>United Nations Working Meetings</h3>
             <p>Blockchain for UN Sustainable Development Goals</p>
           </div>
           <span class="speaking-tag">SPEAKER</span>
         </div>
-        <div class="speaking-item">
+        <div class="speaking-item reveal" style="--stagger:3">
           <div class="speaking-event">
             <h3>Futura Blockchain Innovators Summit</h3>
             <p>Panel jury, Spain</p>
           </div>
           <span class="speaking-tag">PANELIST</span>
         </div>
-        <div class="speaking-item">
+        <div class="speaking-item reveal" style="--stagger:4">
           <div class="speaking-event">
             <h3>Block Battle Show</h3>
             <p>Asian Economic TV, South Korea</p>
           </div>
           <span class="speaking-tag">SPEAKER</span>
         </div>
-        <div class="speaking-item">
+        <div class="speaking-item reveal" style="--stagger:5">
           <div class="speaking-event">
             <h3>Bitcoin AI Startup Lab</h3>
             <p>Mentor &amp; investor in Bitcoin-native startups</p>
@@ -545,13 +867,15 @@
   <!-- Education -->
   <div class="divider"></div>
   <section id="education">
-    <div class="section-inner fade-in" style="text-align:center">
-      <p class="section-label">Education</p>
-      <h2 class="section-title">Academic Background</h2>
-      <div style="display:inline-flex;align-items:center;gap:1rem;padding:1.5rem 2.5rem;background:var(--surface);border:1px solid var(--border);border-radius:12px">
-        <div style="text-align:left">
-          <div style="font-size:1.1rem;font-weight:600">Sungkyunkwan University</div>
-          <div style="font-size:0.85rem;color:var(--text-secondary)">성균관대학교 · Seoul, South Korea</div>
+    <div class="section-inner">
+      <div class="section-header reveal" style="--stagger:0;text-align:center">
+        <p class="section-label">Education</p>
+        <h2 class="section-title">Academic Background</h2>
+      </div>
+      <div class="education-content reveal" style="--stagger:1">
+        <div class="education-card">
+          <div class="education-name">Sungkyunkwan University</div>
+          <div class="education-detail">성균관대학교 · Seoul, South Korea</div>
         </div>
       </div>
     </div>
@@ -560,11 +884,13 @@
   <!-- Contact -->
   <div class="divider"></div>
   <section id="contact" class="contact-section">
-    <div class="section-inner fade-in">
-      <p class="section-label">Contact</p>
-      <h2 class="section-title">Let's Connect</h2>
-      <p>Open to conversations about digital asset policy, regulatory frameworks, and industry collaboration.</p>
-      <div class="contact-links">
+    <div class="section-inner">
+      <div class="section-header reveal" style="--stagger:0">
+        <p class="section-label">Contact</p>
+        <h2 class="section-title">Let's Connect</h2>
+        <p class="section-desc">Open to conversations about digital asset policy, regulatory frameworks, and industry collaboration.</p>
+      </div>
+      <div class="contact-links reveal" style="--stagger:1">
         <a href="https://www.linkedin.com/in/sunga-sophie-kim-a23552b1/" target="_blank" rel="noopener" class="contact-link">
           <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
           LinkedIn
@@ -591,29 +917,43 @@
   </footer>
 
   <script>
-    // Navbar scroll effect
     const nav = document.getElementById('navbar');
     window.addEventListener('scroll', () => {
       nav.classList.toggle('scrolled', window.scrollY > 50);
-    });
+    }, { passive: true });
 
-    // Fade in on scroll
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-        }
-      });
-    }, { threshold: 0.1 });
+    const navToggle = document.getElementById('navToggle');
+    const navOverlay = document.getElementById('navOverlay');
 
-    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+    function toggleMobileNav() {
+      const isOpen = navOverlay.classList.toggle('open');
+      navToggle.classList.toggle('active');
+      navToggle.setAttribute('aria-expanded', isOpen);
+      document.body.style.overflow = isOpen ? 'hidden' : '';
+    }
 
-    // Close mobile nav on link click
-    document.querySelectorAll('.nav-links a').forEach(link => {
+    navToggle.addEventListener('click', toggleMobileNav);
+
+    navOverlay.querySelectorAll('a').forEach(link => {
       link.addEventListener('click', () => {
-        document.querySelector('.nav-links').classList.remove('open');
+        navOverlay.classList.remove('open');
+        navToggle.classList.remove('active');
+        navToggle.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
       });
     });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && navOverlay.classList.contains('open')) toggleMobileNav();
+    });
+
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
   </script>
 </body>
 </html>
