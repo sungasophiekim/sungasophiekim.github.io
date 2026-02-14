@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sunga Sophie Kim — Founder, IDAPI | Digital Asset Policy Expert</title>
-  <meta name="description" content="Sung A (Sophie) Kim — Founder of the International Digital Asset Policy Institute (IDAPI), Co-founder of BTCON Seoul & Hanbitco, Inaugural Chair of the Exchange Committee at the Korea Blockchain Association.">
+  <meta name="description" content="Sung A (Sophie) Kim — Founder of the International Digital Asset Policy Institute (IDAPI), Korea's first female crypto exchange CEO, and a leading voice in digital asset policy bridging Asia and the world.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+JP:wght@400;500;700&family=Noto+Sans+SC:wght@400;500;700&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
@@ -150,6 +150,7 @@
     .nav-overlay a:nth-child(3){transition-delay:0.15s}
     .nav-overlay a:nth-child(4){transition-delay:0.2s}
     .nav-overlay a:nth-child(5){transition-delay:0.25s}
+    .nav-overlay a:nth-child(6){transition-delay:0.3s}
     .nav-overlay a:hover{color:var(--accent)}
     .nav-overlay .lang-toggle-mobile{
       margin-top:var(--space-3);
@@ -171,14 +172,25 @@
       position:relative;overflow:hidden;
     }
     .hero::before{
-      content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);
-      width:100%;max-width:1000px;height:70vh;
-      background:radial-gradient(ellipse at 50% 0%,var(--blue-glow) 0%,transparent 70%);
+      content:'';position:absolute;top:0;right:0;
+      width:50%;height:100%;
+      background:radial-gradient(ellipse at 70% 40%,var(--blue-glow) 0%,transparent 60%);
       pointer-events:none;
     }
     .hero-content{
       max-width:1200px;width:100%;margin:0 auto;
-      text-align:center;position:relative;z-index:1;
+      display:grid;grid-template-columns:1fr;gap:var(--space-6);
+      align-items:center;position:relative;z-index:1;
+      text-align:center;
+    }
+    .hero-text{order:2}
+    .hero-photo-wrap{order:1;display:flex;justify-content:center}
+    .hero-photo{
+      width:220px;height:220px;border-radius:50%;
+      object-fit:cover;object-position:center 15%;
+      border:3px solid var(--border);
+      box-shadow:0 8px 40px rgba(0,0,0,0.08),0 0 0 8px var(--blue-dim);
+      opacity:0;animation:fadeUp 0.7s var(--ease-out) 0.1s both;
     }
     .hero-badge{
       display:inline-flex;align-items:center;gap:6px;
@@ -187,7 +199,7 @@
       padding:6px 14px;border-radius:var(--radius-full);
       border:1px solid rgba(0,82,255,0.15);
       margin-bottom:var(--space-4);
-      opacity:0;animation:fadeUp 0.6s var(--ease-out) 0.1s both;
+      opacity:0;animation:fadeUp 0.6s var(--ease-out) 0.15s both;
     }
     .hero-badge::before{
       content:'';width:6px;height:6px;background:var(--blue);border-radius:50%;
@@ -196,18 +208,37 @@
     @keyframes blink{0%,100%{opacity:1}50%{opacity:0.3}}
     .hero h1{
       font-size:var(--fs-display);font-weight:700;line-height:1.1;
-      letter-spacing:-0.03em;margin-bottom:var(--space-3);
-      opacity:0;animation:fadeUp 0.7s var(--ease-out) 0.2s both;
+      letter-spacing:-0.03em;margin-bottom:var(--space-2);
+      opacity:0;animation:fadeUp 0.7s var(--ease-out) 0.25s both;
     }
     .hero h1 .blue{color:var(--blue)}
-    .hero-subtitle{
-      font-size:clamp(1rem,1.5vw,1.25rem);color:var(--text-secondary);
-      max-width:600px;margin:0 auto var(--space-5);line-height:1.7;
+    .hero-tagline{
+      font-size:clamp(1.05rem,1.8vw,1.3rem);color:var(--text-secondary);
+      font-weight:500;letter-spacing:-0.01em;
+      margin-bottom:var(--space-3);
       opacity:0;animation:fadeUp 0.7s var(--ease-out) 0.35s both;
+    }
+    .hero-subtitle{
+      font-size:clamp(0.95rem,1.3vw,1.1rem);color:var(--text-tertiary);
+      max-width:640px;margin:0 auto var(--space-5);line-height:1.7;
+      opacity:0;animation:fadeUp 0.7s var(--ease-out) 0.45s both;
     }
     .hero-actions{
       display:flex;gap:var(--space-2);justify-content:center;flex-wrap:wrap;
-      opacity:0;animation:fadeUp 0.7s var(--ease-out) 0.5s both;
+      opacity:0;animation:fadeUp 0.7s var(--ease-out) 0.55s both;
+    }
+    @media(min-width:768px){
+      .hero-content{
+        grid-template-columns:1fr auto;text-align:left;gap:var(--space-8);
+      }
+      .hero-text{order:1}
+      .hero-photo-wrap{order:2;justify-content:flex-end}
+      .hero-photo{width:300px;height:300px}
+      .hero-subtitle{margin:0 0 var(--space-5)}
+      .hero-actions{justify-content:flex-start}
+    }
+    @media(min-width:1024px){
+      .hero-photo{width:340px;height:340px}
     }
     .btn{
       display:inline-flex;align-items:center;gap:var(--space-1);
@@ -222,6 +253,28 @@
     .btn-outline:hover{border-color:var(--text);transform:translateY(-1px)}
     .btn svg{width:16px;height:16px}
     @keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+
+    /* ===== TRUST BAR ===== */
+    .trust-bar{
+      padding:var(--space-5) var(--space-3);border-top:1px solid var(--border);border-bottom:1px solid var(--border);
+      background:var(--bg-secondary);
+    }
+    .trust-bar-inner{max-width:1200px;margin:0 auto;text-align:center}
+    .trust-bar-label{
+      font-family:var(--font-mono);font-size:var(--fs-micro);font-weight:500;
+      letter-spacing:0.1em;text-transform:uppercase;color:var(--text-tertiary);
+      margin-bottom:var(--space-3);
+    }
+    .trust-items{
+      display:flex;flex-wrap:wrap;justify-content:center;gap:var(--space-2) var(--space-4);
+      align-items:center;
+    }
+    .trust-item{
+      display:flex;align-items:center;gap:8px;
+      font-size:var(--fs-small);font-weight:500;color:var(--text-secondary);
+      white-space:nowrap;
+    }
+    .trust-dot{width:6px;height:6px;border-radius:50%;background:var(--accent);flex-shrink:0}
 
     /* ===== SECTIONS ===== */
     section{padding:var(--space-10) var(--space-3)}
@@ -244,8 +297,18 @@
 
     /* ===== ABOUT ===== */
     .about-grid{display:grid;grid-template-columns:1fr;gap:var(--space-5)}
-    .about-text p{color:var(--text-secondary);font-size:var(--fs-body);line-height:1.7;margin-bottom:var(--space-2)}
+    .about-text p{color:var(--text-secondary);font-size:var(--fs-body);line-height:1.8;margin-bottom:var(--space-2)}
     .about-text p:last-child{margin-bottom:0}
+    .about-text strong{color:var(--text);font-weight:600}
+    .about-highlight{
+      margin-top:var(--space-3);padding:var(--space-3);
+      background:var(--blue-dim);border-left:3px solid var(--accent);
+      border-radius:0 var(--radius-sm) var(--radius-sm) 0;
+    }
+    .about-highlight p{
+      color:var(--text)!important;font-weight:500;font-size:var(--fs-small)!important;
+      line-height:1.7!important;margin-bottom:0!important;font-style:italic;
+    }
     .about-stats{display:grid;grid-template-columns:1fr 1fr;gap:var(--space-2)}
     .stat-card{
       background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);
@@ -304,6 +367,27 @@
     .speaking-event p{font-size:var(--fs-caption);color:var(--text-secondary)}
     .speaking-tag{font-family:var(--font-mono);font-size:0.6875rem;font-weight:500;color:var(--accent);letter-spacing:0.06em;white-space:nowrap;background:var(--blue-dim);padding:4px 10px;border-radius:var(--radius-full)}
 
+    /* ===== MEDIA ===== */
+    .media-grid{display:grid;grid-template-columns:1fr;gap:var(--space-2)}
+    .media-card{
+      display:flex;align-items:flex-start;gap:var(--space-3);
+      padding:var(--space-3);background:var(--surface);border:1px solid var(--border);
+      border-radius:var(--radius-lg);text-decoration:none;color:var(--text);
+      transition:border-color var(--duration),transform var(--duration) var(--ease-out),box-shadow var(--duration);
+    }
+    .media-card:hover{border-color:var(--border-hover);transform:translateY(-2px);box-shadow:0 8px 32px rgba(0,0,0,0.06)}
+    .media-icon{
+      width:44px;height:44px;flex-shrink:0;background:var(--blue-dim);border-radius:var(--radius-md);
+      display:flex;align-items:center;justify-content:center;
+      font-family:var(--font-mono);font-size:var(--fs-micro);font-weight:700;color:var(--accent);
+    }
+    .media-info{flex:1;min-width:0}
+    .media-info h3{font-size:var(--fs-small);font-weight:600;margin-bottom:2px}
+    .media-info .media-outlet{font-family:var(--font-mono);font-size:var(--fs-micro);color:var(--accent);font-weight:500;margin-bottom:4px}
+    .media-info p{font-size:var(--fs-caption);color:var(--text-secondary);line-height:1.5}
+    .media-date{font-family:var(--font-mono);font-size:0.6875rem;color:var(--text-tertiary);white-space:nowrap;flex-shrink:0}
+    @media(min-width:640px){.media-grid{grid-template-columns:repeat(2,1fr)}}
+
     /* ===== EDUCATION ===== */
     .education-content{text-align:center;padding:var(--space-3) 0}
     .education-card{display:inline-flex;flex-direction:column;align-items:center;padding:var(--space-4);background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);gap:4px}
@@ -316,6 +400,15 @@
     .contact-section .section-label{text-align:center}
     .contact-section .section-title{text-align:center;font-size:var(--fs-h1)}
     .contact-section .section-desc{text-align:center;margin:var(--space-1) auto var(--space-5)}
+    .contact-topics{
+      display:flex;flex-wrap:wrap;gap:var(--space-1);justify-content:center;
+      margin-bottom:var(--space-4);
+    }
+    .contact-topic{
+      font-family:var(--font-mono);font-size:var(--fs-micro);font-weight:500;
+      color:var(--text-secondary);background:var(--bg);
+      padding:6px 14px;border-radius:var(--radius-full);border:1px solid var(--border);
+    }
     .contact-links{display:flex;gap:var(--space-1);justify-content:center;flex-wrap:wrap}
     .contact-link{
       display:inline-flex;align-items:center;gap:var(--space-1);
@@ -356,6 +449,8 @@
       .contact-section{padding:var(--space-6) var(--space-2)}
       .stat-card{padding:var(--space-2)}
       .stat-number{font-size:1.5rem}
+      .trust-items{gap:var(--space-2)}
+      .trust-item{font-size:var(--fs-caption)}
     }
   </style>
 </head>
@@ -373,6 +468,7 @@
           <li><a href="#experience" data-i18n="nav.experience">Experience</a></li>
           <li><a href="#ventures" data-i18n="nav.ventures">Ventures</a></li>
           <li><a href="#speaking" data-i18n="nav.speaking">Speaking</a></li>
+          <li><a href="#media" data-i18n="nav.media">Media</a></li>
         </ul>
       </div>
       <div class="nav-right">
@@ -397,6 +493,7 @@
     <a href="#experience" data-i18n="nav.experience">Experience</a>
     <a href="#ventures" data-i18n="nav.ventures">Ventures</a>
     <a href="#speaking" data-i18n="nav.speaking">Speaking</a>
+    <a href="#media" data-i18n="nav.media">Media</a>
     <a href="#contact" data-i18n="nav.contact_btn">Get in Touch</a>
     <div class="lang-toggle-mobile" id="langToggleMobile">
       <button class="lang-btn active" data-lang="en">EN</button>
@@ -408,34 +505,56 @@
 
   <section class="hero">
     <div class="hero-content">
-      <div class="hero-badge" data-i18n="hero.badge">Digital Asset Policy Pioneer</div>
-      <h1>Sung A (Sophie)<br><span class="blue">Kim</span></h1>
-      <p class="hero-subtitle" data-i18n="hero.subtitle">Founder, International Digital Asset Policy Institute (IDAPI). A first-generation policy expert shaping Korea's digital asset regulatory landscape since 2015.</p>
-      <div class="hero-actions">
-        <a href="#contact" class="btn btn-primary" data-i18n="hero.cta">Get in Touch<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
-        <a href="#experience" class="btn btn-outline" data-i18n="hero.cta2">View Experience</a>
+      <div class="hero-text">
+        <div class="hero-badge" data-i18n="hero.badge">Founder &middot; Policy Architect &middot; Bitcoiner since 2015</div>
+        <h1>Sung A (Sophie)<br><span class="blue">Kim</span></h1>
+        <p class="hero-tagline" data-i18n="hero.tagline">Korea's first female crypto exchange CEO, now shaping digital asset policy across Asia.</p>
+        <p class="hero-subtitle" data-i18n="hero.subtitle">Founder of the International Digital Asset Policy Institute (IDAPI). Bridging global regulatory standards with Korea's evolving digital asset landscape through a decade of frontline industry and policy experience.</p>
+        <div class="hero-actions">
+          <a href="#contact" class="btn btn-primary" data-i18n="hero.cta">Get in Touch<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
+          <a href="#about" class="btn btn-outline" data-i18n="hero.cta2">Read My Story</a>
+        </div>
+      </div>
+      <div class="hero-photo-wrap">
+        <img src="ssa.png" alt="Sung A (Sophie) Kim" class="hero-photo" width="340" height="340">
       </div>
     </div>
   </section>
 
-  <div class="divider"></div>
+  <!-- Trust Bar -->
+  <div class="trust-bar">
+    <div class="trust-bar-inner">
+      <p class="trust-bar-label" data-i18n="trust.label">Trusted by &amp; Affiliated with</p>
+      <div class="trust-items">
+        <span class="trust-item"><span class="trust-dot"></span> <span data-i18n="trust.t1">Korea Blockchain Association</span></span>
+        <span class="trust-item"><span class="trust-dot"></span> <span data-i18n="trust.t2">United Nations (SDG Initiatives)</span></span>
+        <span class="trust-item"><span class="trust-dot"></span> <span data-i18n="trust.t3">Korean Accounting Association</span></span>
+        <span class="trust-item"><span class="trust-dot"></span> <span data-i18n="trust.t4">Virtual Asset Policy Task Force</span></span>
+        <span class="trust-item"><span class="trust-dot"></span> <span data-i18n="trust.t5">BTCON Seoul</span></span>
+      </div>
+    </div>
+  </div>
+
   <section id="about">
     <div class="section-inner">
       <div class="section-header reveal" style="--stagger:0">
         <p class="section-label" data-i18n="about.label">About</p>
-        <h2 class="section-title" data-i18n="about.title">Bridging Policy & Industry in Digital Assets</h2>
+        <h2 class="section-title" data-i18n="about.title">A Decade at the Intersection of Crypto and Policy</h2>
       </div>
       <div class="about-grid">
         <div class="about-text reveal" style="--stagger:1">
-          <p data-i18n="about.p1">A first-generation policy expert who has participated in the institutionalization of Korea's digital asset industry. She began her career at a cryptocurrency exchange in 2015, gaining frontline experience in one of the sector's core market infrastructures during its formative years.</p>
-          <p data-i18n="about.p2">She took part in the founding of the Korea Blockchain Association, where she was involved in early discussions on regulatory frameworks and the policy direction for digital assets. She also served as Chair of the Exchange Committee within the Virtual Asset Policy Task Force, facilitating working-level dialogue between industry participants and policymakers.</p>
-          <p data-i18n="about.p3">Building on this combined industry and policy experience, she founded the International Digital Asset Policy Institute (IDAPI) to help bridge global standards with Korea's regulatory environment and support coherent policy development.</p>
+          <p data-i18n="about.p1">In 2015, Sung A (Sophie) Kim entered the cryptocurrency industry — years before most institutions even acknowledged its existence. She co-founded <strong>Hanbitco</strong>, becoming <strong>Korea's first female cryptocurrency exchange CEO</strong>, and built it into a fully regulated, VASP-licensed platform with ISO/IEC 27001 certification.</p>
+          <p data-i18n="about.p2">Recognizing that sustainable growth demanded clear rules, she turned to policy. She co-founded the <strong>Korea Blockchain Association</strong> and was <strong>elected by member exchanges as the inaugural Chair of its Exchange Committee</strong> — a role she held for three years. During this tenure, she played a central role in shaping Korea's landmark Special Financial Information Act, facilitating critical dialogue between industry leaders and government regulators.</p>
+          <p data-i18n="about.p3">Today, as founder of the <strong>International Digital Asset Policy Institute (IDAPI)</strong>, she works at the nexus of global regulatory standards and Korea's domestic policy framework — conducting cross-border research, advising on institutional strategy, and ensuring Korea's digital asset ecosystem develops in alignment with international best practices.</p>
+          <div class="about-highlight">
+            <p data-i18n="about.quote">"I believe the future of digital assets depends not just on innovation, but on the quality of the rules we build around it. My mission is to ensure those rules are informed, fair, and globally coherent."</p>
+          </div>
         </div>
         <div class="about-stats">
-          <div class="stat-card reveal" style="--stagger:2"><div class="stat-number">2015</div><div class="stat-label" data-i18n="about.stat1">Bitcoiner since</div></div>
-          <div class="stat-card reveal" style="--stagger:3"><div class="stat-number">10+</div><div class="stat-label" data-i18n="about.stat2">Years in Blockchain</div></div>
-          <div class="stat-card reveal" style="--stagger:4"><div class="stat-number">1st</div><div class="stat-label" data-i18n="about.stat3">Female Crypto Exchange CEO in Korea</div></div>
-          <div class="stat-card reveal" style="--stagger:5"><div class="stat-number">3</div><div class="stat-label" data-i18n="about.stat4">Years as KBA Chairwoman</div></div>
+          <div class="stat-card reveal" style="--stagger:2"><div class="stat-number">2015</div><div class="stat-label" data-i18n="about.stat1">In crypto before it was mainstream</div></div>
+          <div class="stat-card reveal" style="--stagger:3"><div class="stat-number">10+</div><div class="stat-label" data-i18n="about.stat2">Years building at the frontier</div></div>
+          <div class="stat-card reveal" style="--stagger:4"><div class="stat-number">1st</div><div class="stat-label" data-i18n="about.stat3">Female crypto exchange CEO in Korea</div></div>
+          <div class="stat-card reveal" style="--stagger:5"><div class="stat-number">3</div><div class="stat-label" data-i18n="about.stat4">Years as elected KBA Exchange Committee Chair</div></div>
         </div>
       </div>
     </div>
@@ -446,15 +565,15 @@
     <div class="section-inner">
       <div class="section-header reveal" style="--stagger:0">
         <p class="section-label" data-i18n="exp.label">Experience</p>
-        <h2 class="section-title" data-i18n="exp.title">Career Journey</h2>
+        <h2 class="section-title" data-i18n="exp.title">From the Trading Floor to the Policy Table</h2>
       </div>
       <div class="timeline">
         <div class="timeline-item current reveal" style="--stagger:1">
-          <div class="timeline-date" data-i18n="exp.t1.date">Current</div>
+          <div class="timeline-date" data-i18n="exp.t1.date">2024 — Present</div>
           <div class="timeline-content">
             <div class="timeline-role" data-i18n="exp.t1.role">Founder</div>
             <div class="timeline-company" data-i18n="exp.t1.company">International Digital Asset Policy Institute (IDAPI)</div>
-            <div class="timeline-desc" data-i18n="exp.t1.desc">Leading research and policy dialogue connecting domestic regulatory frameworks with international developments. Bridging global standards with Korea's regulatory environment.</div>
+            <div class="timeline-desc" data-i18n="exp.t1.desc">Founded a policy research institute connecting Korea's regulatory framework with international standards. Leads cross-border dialogue on digital asset governance, advises institutions on regulatory strategy, and publishes policy analysis bridging Asia and global markets.</div>
           </div>
         </div>
         <div class="timeline-item reveal" style="--stagger:2">
@@ -462,7 +581,7 @@
           <div class="timeline-content">
             <div class="timeline-role" data-i18n="exp.t2.role">Member, Virtual Asset Committee</div>
             <div class="timeline-company" data-i18n="exp.t2.company">Korean Accounting Association</div>
-            <div class="timeline-desc" data-i18n="exp.t2.desc">Contributed to the development of accounting standards and guidelines for virtual assets within Korea's professional accounting body.</div>
+            <div class="timeline-desc" data-i18n="exp.t2.desc">Contributed to Korea's first professional accounting standards for virtual assets. Helped define classification, valuation, and disclosure guidelines adopted by the country's leading accounting body.</div>
           </div>
         </div>
         <div class="timeline-item reveal" style="--stagger:3">
@@ -470,15 +589,15 @@
           <div class="timeline-content">
             <div class="timeline-role" data-i18n="exp.t3.role">Inaugural Chair, Exchange Committee</div>
             <div class="timeline-company" data-i18n="exp.t3.company">Korea Blockchain Association</div>
-            <div class="timeline-desc" data-i18n="exp.t3.desc">Elected by member exchanges. Led initiatives to advance the industry's regulatory framework and governance standards over a three-year tenure.</div>
+            <div class="timeline-desc" data-i18n="exp.t3.desc">Elected by Korea's crypto exchanges to lead the Association's flagship committee. Drove industry-wide governance standards, self-regulatory frameworks, and coordinated the sector's response to evolving legislation across a three-year mandate.</div>
           </div>
         </div>
         <div class="timeline-item reveal" style="--stagger:4">
           <div class="timeline-date">2019 — 2020</div>
           <div class="timeline-content">
             <div class="timeline-role" data-i18n="exp.t4.role">Chair, Exchange Committee</div>
-            <div class="timeline-company" data-i18n="exp.t4.company">Virtual Asset Task Force</div>
-            <div class="timeline-desc" data-i18n="exp.t4.desc">Facilitated working-level dialogue between industry and policymakers on the amendment to the Act on Reporting and Using Specified Financial Transaction Information.</div>
+            <div class="timeline-company" data-i18n="exp.t4.company">Virtual Asset Policy Task Force</div>
+            <div class="timeline-desc" data-i18n="exp.t4.desc">Served as the industry's lead representative in negotiations on the amendment to Korea's Special Financial Information Act — the country's first comprehensive crypto regulation. Brokered consensus between exchanges, regulators, and lawmakers.</div>
           </div>
         </div>
         <div class="timeline-item reveal" style="--stagger:5">
@@ -486,15 +605,15 @@
           <div class="timeline-content">
             <div class="timeline-role" data-i18n="exp.t5.role">Co-founder &amp; CEO</div>
             <div class="timeline-company">Hanbitco Exchange</div>
-            <div class="timeline-desc" data-i18n="exp.t5.desc">Founded a regulated Korean crypto exchange — a founding member company of the Korea Blockchain Association. Obtained VASP license and ISO/IEC 27001 security certification.</div>
+            <div class="timeline-desc" data-i18n="exp.t5.desc">Built one of Korea's regulated crypto exchanges from the ground up. Secured VASP licensure, achieved ISO/IEC 27001 certification, and established Hanbitco as a founding member of the Korea Blockchain Association.</div>
           </div>
         </div>
         <div class="timeline-item reveal" style="--stagger:6">
           <div class="timeline-date">2015</div>
           <div class="timeline-content">
-            <div class="timeline-role" data-i18n="exp.t6.role">Career Start in Crypto</div>
+            <div class="timeline-role" data-i18n="exp.t6.role">Entered the Crypto Industry</div>
             <div class="timeline-company" data-i18n="exp.t6.company">Cryptocurrency Exchange</div>
-            <div class="timeline-desc" data-i18n="exp.t6.desc">Began career at a cryptocurrency exchange, gaining frontline experience in one of the sector's core market infrastructures during its formative years.</div>
+            <div class="timeline-desc" data-i18n="exp.t6.desc">Joined one of Korea's earliest cryptocurrency exchanges, gaining frontline experience in exchange operations, compliance, and market infrastructure during the industry's formative years — when Bitcoin was still under $300.</div>
           </div>
         </div>
       </div>
@@ -506,33 +625,33 @@
     <div class="section-inner">
       <div class="section-header reveal" style="--stagger:0">
         <p class="section-label" data-i18n="ven.label">Ventures</p>
-        <h2 class="section-title" data-i18n="ven.title">Key Initiatives</h2>
+        <h2 class="section-title" data-i18n="ven.title">Building Institutions, Not Just Companies</h2>
       </div>
       <div class="ventures-grid">
         <div class="venture-card featured reveal" style="--stagger:1">
-          <div class="venture-featured-tag">Featured</div>
+          <div class="venture-featured-tag" data-i18n="ven.current">Current Focus</div>
           <div class="venture-icon">&#9830;</div>
           <h3>IDAPI</h3>
           <div class="venture-role" data-i18n="ven.v1.role">Founder</div>
-          <p data-i18n="ven.v1.desc">International Digital Asset Policy Institute — bridging global standards with Korea's regulatory environment. Leading research and policy dialogue on digital asset governance.</p>
+          <p data-i18n="ven.v1.desc">The International Digital Asset Policy Institute — a research and advisory body bridging global regulatory standards with Korea's digital asset framework. Produces policy analysis, hosts cross-border dialogue, and advises institutions navigating crypto regulation.</p>
         </div>
         <div class="venture-card reveal" style="--stagger:2">
           <div class="venture-icon">&#9733;</div>
           <h3>BTCON Seoul</h3>
           <div class="venture-role" data-i18n="ven.v2.role">Co-Founder</div>
-          <p data-i18n="ven.v2.desc">Korea's premier Bitcoin conference bringing together global leaders to discuss crypto's evolution — from policy and adoption to institutional strategy and RWA.</p>
+          <p data-i18n="ven.v2.desc">Korea's premier Bitcoin conference — a gathering of global industry leaders, policymakers, and builders discussing Bitcoin's role in the future of money, from institutional adoption and policy to RWA and macroeconomic strategy.</p>
         </div>
         <div class="venture-card reveal" style="--stagger:3">
           <div class="venture-icon">&#9670;</div>
           <h3>Hanbitco Exchange</h3>
           <div class="venture-role" data-i18n="ven.v3.role">Co-founder &amp; CEO (2017–2022)</div>
-          <p data-i18n="ven.v3.desc">Founding member company of the Korea Blockchain Association. Regulated crypto exchange with VASP license and ISO/IEC 27001 security certification.</p>
+          <p data-i18n="ven.v3.desc">A regulated Korean crypto exchange built to institutional standards. VASP-licensed, ISO/IEC 27001-certified, and a founding member of the Korea Blockchain Association. Operated for five years through multiple market cycles.</p>
         </div>
         <div class="venture-card reveal" style="--stagger:4">
           <div class="venture-icon">&#9673;</div>
           <h3>ChainAction</h3>
           <div class="venture-role" data-i18n="ven.v4.role">Founder</div>
-          <p data-i18n="ven.v4.desc">Non-profit organization for blockchain aligned with the 17 UN Sustainable Development Goals — exploring how blockchain technology can drive global impact.</p>
+          <p data-i18n="ven.v4.desc">A non-profit initiative applying blockchain technology to the United Nations' 17 Sustainable Development Goals. Presented at UN working meetings and convened technologists, NGOs, and policymakers around blockchain's potential for global impact.</p>
         </div>
       </div>
     </div>
@@ -542,15 +661,66 @@
   <section id="speaking">
     <div class="section-inner">
       <div class="section-header reveal" style="--stagger:0">
-        <p class="section-label" data-i18n="speak.label">Speaking &amp; Industry</p>
-        <h2 class="section-title" data-i18n="speak.title">Global Engagements</h2>
+        <p class="section-label" data-i18n="speak.label">Speaking &amp; Advisory</p>
+        <h2 class="section-title" data-i18n="speak.title">Global Platforms &amp; Engagements</h2>
+        <p class="section-desc" data-i18n="speak.desc">Invited to share insights on digital asset regulation, exchange governance, and blockchain policy at leading international forums.</p>
       </div>
       <div class="speaking-list">
-        <div class="speaking-item reveal" style="--stagger:1"><div class="speaking-event"><h3>BTCON Seoul</h3><p data-i18n="speak.s1.desc">Korea's first pioneering Bitcoin conference &amp; hackathon</p></div><span class="speaking-tag">CO-FOUNDER</span></div>
-        <div class="speaking-item reveal" style="--stagger:2"><div class="speaking-event"><h3 data-i18n="speak.s2.name">United Nations Working Meetings</h3><p data-i18n="speak.s2.desc">Blockchain for UN Sustainable Development Goals</p></div><span class="speaking-tag">SPEAKER</span></div>
-        <div class="speaking-item reveal" style="--stagger:3"><div class="speaking-event"><h3>Futura Blockchain Innovators Summit</h3><p data-i18n="speak.s3.desc">Panel jury, Spain</p></div><span class="speaking-tag">PANELIST</span></div>
-        <div class="speaking-item reveal" style="--stagger:4"><div class="speaking-event"><h3>Block Battle Show</h3><p data-i18n="speak.s4.desc">Asian Economic TV, South Korea</p></div><span class="speaking-tag">SPEAKER</span></div>
-        <div class="speaking-item reveal" style="--stagger:5"><div class="speaking-event"><h3>Bitcoin AI Startup Lab</h3><p data-i18n="speak.s5.desc">Mentor &amp; investor in Bitcoin-native startups</p></div><span class="speaking-tag">MENTOR</span></div>
+        <div class="speaking-item reveal" style="--stagger:1"><div class="speaking-event"><h3>BTCON Seoul 2024 &amp; 2025</h3><p data-i18n="speak.s1.desc">Co-founded Korea's flagship Bitcoin conference, hackathon &amp; Bitcoin Olympics</p></div><span class="speaking-tag">CO-FOUNDER</span></div>
+        <div class="speaking-item reveal" style="--stagger:2"><div class="speaking-event"><h3 data-i18n="speak.s2.name">United Nations Working Meetings</h3><p data-i18n="speak.s2.desc">Presented on blockchain applications for UN Sustainable Development Goals</p></div><span class="speaking-tag">SPEAKER</span></div>
+        <div class="speaking-item reveal" style="--stagger:3"><div class="speaking-event"><h3>Futura Blockchain Innovators Summit</h3><p data-i18n="speak.s3.desc">International jury member, Barcelona, Spain</p></div><span class="speaking-tag">JURY</span></div>
+        <div class="speaking-item reveal" style="--stagger:4"><div class="speaking-event"><h3>Block Battle Show</h3><p data-i18n="speak.s4.desc">Blockchain survival TV show judge, Asian Economic TV (2018)</p></div><span class="speaking-tag">TV JUDGE</span></div>
+        <div class="speaking-item reveal" style="--stagger:5"><div class="speaking-event"><h3>Blockchain Data Challenge 2019</h3><p data-i18n="speak.s5.desc">Industry judge for Korea's blockchain data innovation competition</p></div><span class="speaking-tag">JURY</span></div>
+        <div class="speaking-item reveal" style="--stagger:6"><div class="speaking-event"><h3>Women in Blockchain</h3><p data-i18n="speak.s6.desc">Co-initiated global women blockchain leaders program with UN Futures Forum</p></div><span class="speaking-tag">INITIATIVE</span></div>
+        <div class="speaking-item reveal" style="--stagger:7"><div class="speaking-event"><h3>Bitcoin AI Startup Lab</h3><p data-i18n="speak.s7.desc">Mentor &amp; angel investor backing Bitcoin-native startups</p></div><span class="speaking-tag">MENTOR</span></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+  <section id="media">
+    <div class="section-inner">
+      <div class="section-header reveal" style="--stagger:0">
+        <p class="section-label" data-i18n="media.label">In the Media</p>
+        <h2 class="section-title" data-i18n="media.title">Featured Coverage &amp; Interviews</h2>
+      </div>
+      <div class="media-grid">
+        <a href="https://www.coindeskkorea.com/news/articleView.html?idxno=72429" target="_blank" rel="noopener" class="media-card reveal" style="--stagger:1">
+          <div class="media-icon">CD</div>
+          <div class="media-info">
+            <div class="media-outlet">CoinDesk Korea</div>
+            <h3 data-i18n="media.m1.title">"Our goal is to become a full-service digital asset financial group — brokerage, custody, and asset management"</h3>
+            <p data-i18n="media.m1.desc">In-depth interview on Hanbitco's strategy to mirror Coinbase's institutional-grade approach in the Korean market.</p>
+          </div>
+          <span class="media-date">2021.01</span>
+        </a>
+        <a href="https://www.fnnews.com/news/202006101415167765" target="_blank" rel="noopener" class="media-card reveal" style="--stagger:2">
+          <div class="media-icon">FN</div>
+          <div class="media-info">
+            <div class="media-outlet" data-i18n="media.m2.outlet">Financial News</div>
+            <h3 data-i18n="media.m2.title">"Financial experts lead Hanbitco to spearhead virtual asset legislation"</h3>
+            <p data-i18n="media.m2.desc">Feature on Hanbitco's role in driving Korea's Special Financial Information Act as a top-tier compliance-focused exchange.</p>
+          </div>
+          <span class="media-date">2020.06</span>
+        </a>
+        <a href="https://www.blockmedia.co.kr/archives/68812" target="_blank" rel="noopener" class="media-card reveal" style="--stagger:3">
+          <div class="media-icon">BM</div>
+          <div class="media-info">
+            <div class="media-outlet">BlockMedia</div>
+            <h3 data-i18n="media.m3.title">"We'll bring new users into crypto through a mass adoption strategy"</h3>
+            <p data-i18n="media.m3.desc">CEO interview on Hanbitco's pivot to a consumer-friendly exchange with UX innovation and cross-industry partnerships.</p>
+          </div>
+          <span class="media-date">2019.03</span>
+        </a>
+        <a href="https://paxnetnews.com/articles/72521" target="_blank" rel="noopener" class="media-card reveal" style="--stagger:4">
+          <div class="media-icon">PX</div>
+          <div class="media-info">
+            <div class="media-outlet" data-i18n="media.m4.outlet">Paxnet News</div>
+            <h3 data-i18n="media.m4.title">"Hanbitco appoints Kim Sung-a as co-CEO — focused on Special Financial Information Act"</h3>
+            <p data-i18n="media.m4.desc">Coverage of leadership transition and the exchange's strategic commitment to regulatory compliance.</p>
+          </div>
+          <span class="media-date">2020</span>
+        </a>
       </div>
     </div>
   </section>
@@ -576,10 +746,17 @@
     <div class="section-inner">
       <div class="section-header reveal" style="--stagger:0">
         <p class="section-label" data-i18n="contact.label">Contact</p>
-        <h2 class="section-title" data-i18n="contact.title">Let's Connect</h2>
-        <p class="section-desc" data-i18n="contact.desc">Open to conversations about digital asset policy, regulatory frameworks, and industry collaboration.</p>
+        <h2 class="section-title" data-i18n="contact.title">Let's Work Together</h2>
+        <p class="section-desc" data-i18n="contact.desc">Open to speaking invitations, advisory engagements, policy research collaborations, and conversations about the future of digital assets.</p>
       </div>
-      <div class="contact-links reveal" style="--stagger:1">
+      <div class="contact-topics reveal" style="--stagger:1">
+        <span class="contact-topic" data-i18n="contact.t1">Digital Asset Policy</span>
+        <span class="contact-topic" data-i18n="contact.t2">Regulatory Strategy</span>
+        <span class="contact-topic" data-i18n="contact.t3">Exchange Governance</span>
+        <span class="contact-topic" data-i18n="contact.t4">Speaking Engagements</span>
+        <span class="contact-topic" data-i18n="contact.t5">Cross-border Advisory</span>
+      </div>
+      <div class="contact-links reveal" style="--stagger:2">
         <a href="https://www.linkedin.com/in/sunga-sophie-kim-a23552b1/" target="_blank" rel="noopener" class="contact-link"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>LinkedIn</a>
         <a href="https://medium.com/@sungasophiekim88" target="_blank" rel="noopener" class="contact-link"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.54 12a6.8 6.8 0 01-6.77 6.82A6.8 6.8 0 010 12a6.8 6.8 0 016.77-6.82A6.8 6.8 0 0113.54 12zm7.42 0c0 3.54-1.51 6.42-3.38 6.42-1.87 0-3.39-2.88-3.39-6.42s1.52-6.42 3.39-6.42 3.38 2.88 3.38 6.42M24 12c0 3.17-.53 5.75-1.19 5.75-.66 0-1.19-2.58-1.19-5.75s.53-5.75 1.19-5.75C23.47 6.25 24 8.83 24 12z"/></svg>Medium</a>
         <a href="https://twitter.com/applepicking0" target="_blank" rel="noopener" class="contact-link"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>X (Twitter)</a>
@@ -595,116 +772,154 @@
   <script>
     const T = {
       en: {
-        "nav.about":"About","nav.experience":"Experience","nav.ventures":"Ventures","nav.speaking":"Speaking","nav.contact_btn":"Get in Touch",
-        "hero.badge":"Digital Asset Policy Pioneer",
-        "hero.subtitle":"Founder, International Digital Asset Policy Institute (IDAPI). A first-generation policy expert shaping Korea's digital asset regulatory landscape since 2015.",
-        "hero.cta":"Get in Touch","hero.cta2":"View Experience",
-        "about.label":"About","about.title":"Bridging Policy & Industry in Digital Assets",
-        "about.p1":"A first-generation policy expert who has participated in the institutionalization of Korea's digital asset industry. She began her career at a cryptocurrency exchange in 2015, gaining frontline experience in one of the sector's core market infrastructures during its formative years.",
-        "about.p2":"She took part in the founding of the Korea Blockchain Association, where she was involved in early discussions on regulatory frameworks and the policy direction for digital assets. She also served as Chair of the Exchange Committee within the Virtual Asset Policy Task Force, facilitating working-level dialogue between industry participants and policymakers.",
-        "about.p3":"Building on this combined industry and policy experience, she founded the International Digital Asset Policy Institute (IDAPI) to help bridge global standards with Korea's regulatory environment and support coherent policy development.",
-        "about.stat1":"Bitcoiner since","about.stat2":"Years in Blockchain","about.stat3":"Female Crypto Exchange CEO in Korea","about.stat4":"Years as KBA Chairwoman",
-        "exp.label":"Experience","exp.title":"Career Journey",
-        "exp.t1.date":"Current","exp.t1.role":"Founder","exp.t1.company":"International Digital Asset Policy Institute (IDAPI)","exp.t1.desc":"Leading research and policy dialogue connecting domestic regulatory frameworks with international developments. Bridging global standards with Korea's regulatory environment.",
-        "exp.t2.role":"Member, Virtual Asset Committee","exp.t2.company":"Korean Accounting Association","exp.t2.desc":"Contributed to the development of accounting standards and guidelines for virtual assets within Korea's professional accounting body.",
-        "exp.t3.role":"Inaugural Chair, Exchange Committee","exp.t3.company":"Korea Blockchain Association","exp.t3.desc":"Elected by member exchanges. Led initiatives to advance the industry's regulatory framework and governance standards over a three-year tenure.",
-        "exp.t4.role":"Chair, Exchange Committee","exp.t4.company":"Virtual Asset Task Force","exp.t4.desc":"Facilitated working-level dialogue between industry and policymakers on the amendment to the Act on Reporting and Using Specified Financial Transaction Information.",
-        "exp.t5.role":"Co-founder & CEO","exp.t5.desc":"Founded a regulated Korean crypto exchange — a founding member company of the Korea Blockchain Association. Obtained VASP license and ISO/IEC 27001 security certification.",
-        "exp.t6.role":"Career Start in Crypto","exp.t6.company":"Cryptocurrency Exchange","exp.t6.desc":"Began career at a cryptocurrency exchange, gaining frontline experience in one of the sector's core market infrastructures during its formative years.",
-        "ven.label":"Ventures","ven.title":"Key Initiatives",
-        "ven.v1.role":"Founder","ven.v1.desc":"International Digital Asset Policy Institute — bridging global standards with Korea's regulatory environment. Leading research and policy dialogue on digital asset governance.",
-        "ven.v2.role":"Co-Founder","ven.v2.desc":"Korea's premier Bitcoin conference bringing together global leaders to discuss crypto's evolution — from policy and adoption to institutional strategy and RWA.",
-        "ven.v3.role":"Co-founder & CEO (2017–2022)","ven.v3.desc":"Founding member company of the Korea Blockchain Association. Regulated crypto exchange with VASP license and ISO/IEC 27001 security certification.",
-        "ven.v4.role":"Founder","ven.v4.desc":"Non-profit organization for blockchain aligned with the 17 UN Sustainable Development Goals — exploring how blockchain technology can drive global impact.",
-        "speak.label":"Speaking & Industry","speak.title":"Global Engagements",
-        "speak.s1.desc":"Korea's first pioneering Bitcoin conference & hackathon","speak.s2.name":"United Nations Working Meetings","speak.s2.desc":"Blockchain for UN Sustainable Development Goals","speak.s3.desc":"Panel jury, Spain","speak.s4.desc":"Asian Economic TV, South Korea","speak.s5.desc":"Mentor & investor in Bitcoin-native startups",
+        "nav.about":"About","nav.experience":"Experience","nav.ventures":"Ventures","nav.speaking":"Speaking","nav.media":"Media","nav.contact_btn":"Get in Touch",
+        "hero.badge":"Founder \u00b7 Policy Architect \u00b7 Bitcoiner since 2015",
+        "hero.tagline":"Korea's first female crypto exchange CEO, now shaping digital asset policy across Asia.",
+        "hero.subtitle":"Founder of the International Digital Asset Policy Institute (IDAPI). Bridging global regulatory standards with Korea's evolving digital asset landscape through a decade of frontline industry and policy experience.",
+        "hero.cta":"Get in Touch","hero.cta2":"Read My Story",
+        "trust.label":"Trusted by & Affiliated with",
+        "trust.t1":"Korea Blockchain Association","trust.t2":"United Nations (SDG Initiatives)","trust.t3":"Korean Accounting Association","trust.t4":"Virtual Asset Policy Task Force","trust.t5":"BTCON Seoul",
+        "about.label":"About","about.title":"A Decade at the Intersection of Crypto and Policy",
+        "about.p1":"In 2015, Sung A (Sophie) Kim entered the cryptocurrency industry \u2014 years before most institutions even acknowledged its existence. She co-founded <strong>Hanbitco</strong>, becoming <strong>Korea's first female cryptocurrency exchange CEO</strong>, and built it into a fully regulated, VASP-licensed platform with ISO/IEC 27001 certification.",
+        "about.p2":"Recognizing that sustainable growth demanded clear rules, she turned to policy. She co-founded the <strong>Korea Blockchain Association</strong> and was <strong>elected by member exchanges as the inaugural Chair of its Exchange Committee</strong> \u2014 a role she held for three years. During this tenure, she played a central role in shaping Korea's landmark Special Financial Information Act, facilitating critical dialogue between industry leaders and government regulators.",
+        "about.p3":"Today, as founder of the <strong>International Digital Asset Policy Institute (IDAPI)</strong>, she works at the nexus of global regulatory standards and Korea's domestic policy framework \u2014 conducting cross-border research, advising on institutional strategy, and ensuring Korea's digital asset ecosystem develops in alignment with international best practices.",
+        "about.quote":"\u201cI believe the future of digital assets depends not just on innovation, but on the quality of the rules we build around it. My mission is to ensure those rules are informed, fair, and globally coherent.\u201d",
+        "about.stat1":"In crypto before it was mainstream","about.stat2":"Years building at the frontier","about.stat3":"Female crypto exchange CEO in Korea","about.stat4":"Years as elected KBA Exchange Committee Chair",
+        "exp.label":"Experience","exp.title":"From the Trading Floor to the Policy Table",
+        "exp.t1.date":"2024 \u2014 Present","exp.t1.role":"Founder","exp.t1.company":"International Digital Asset Policy Institute (IDAPI)","exp.t1.desc":"Founded a policy research institute connecting Korea's regulatory framework with international standards. Leads cross-border dialogue on digital asset governance, advises institutions on regulatory strategy, and publishes policy analysis bridging Asia and global markets.",
+        "exp.t2.role":"Member, Virtual Asset Committee","exp.t2.company":"Korean Accounting Association","exp.t2.desc":"Contributed to Korea's first professional accounting standards for virtual assets. Helped define classification, valuation, and disclosure guidelines adopted by the country's leading accounting body.",
+        "exp.t3.role":"Inaugural Chair, Exchange Committee","exp.t3.company":"Korea Blockchain Association","exp.t3.desc":"Elected by Korea's crypto exchanges to lead the Association's flagship committee. Drove industry-wide governance standards, self-regulatory frameworks, and coordinated the sector's response to evolving legislation across a three-year mandate.",
+        "exp.t4.role":"Chair, Exchange Committee","exp.t4.company":"Virtual Asset Policy Task Force","exp.t4.desc":"Served as the industry's lead representative in negotiations on the amendment to Korea's Special Financial Information Act \u2014 the country's first comprehensive crypto regulation. Brokered consensus between exchanges, regulators, and lawmakers.",
+        "exp.t5.role":"Co-founder & CEO","exp.t5.desc":"Built one of Korea's regulated crypto exchanges from the ground up. Secured VASP licensure, achieved ISO/IEC 27001 certification, and established Hanbitco as a founding member of the Korea Blockchain Association.",
+        "exp.t6.role":"Entered the Crypto Industry","exp.t6.company":"Cryptocurrency Exchange","exp.t6.desc":"Joined one of Korea's earliest cryptocurrency exchanges, gaining frontline experience in exchange operations, compliance, and market infrastructure during the industry's formative years \u2014 when Bitcoin was still under $300.",
+        "ven.label":"Ventures","ven.title":"Building Institutions, Not Just Companies","ven.current":"Current Focus",
+        "ven.v1.role":"Founder","ven.v1.desc":"The International Digital Asset Policy Institute \u2014 a research and advisory body bridging global regulatory standards with Korea's digital asset framework. Produces policy analysis, hosts cross-border dialogue, and advises institutions navigating crypto regulation.",
+        "ven.v2.role":"Co-Founder","ven.v2.desc":"Korea's premier Bitcoin conference \u2014 a gathering of global industry leaders, policymakers, and builders discussing Bitcoin's role in the future of money, from institutional adoption and policy to RWA and macroeconomic strategy.",
+        "ven.v3.role":"Co-founder & CEO (2017\u20132022)","ven.v3.desc":"A regulated Korean crypto exchange built to institutional standards. VASP-licensed, ISO/IEC 27001-certified, and a founding member of the Korea Blockchain Association. Operated for five years through multiple market cycles.",
+        "ven.v4.role":"Founder","ven.v4.desc":"A non-profit initiative applying blockchain technology to the United Nations' 17 Sustainable Development Goals. Presented at UN working meetings and convened technologists, NGOs, and policymakers around blockchain's potential for global impact.",
+        "speak.label":"Speaking & Advisory","speak.title":"Global Platforms & Engagements","speak.desc":"Invited to share insights on digital asset regulation, exchange governance, and blockchain policy at leading international forums.",
+        "speak.s1.desc":"Co-founded Korea's flagship Bitcoin conference, hackathon & Bitcoin Olympics","speak.s2.name":"United Nations Working Meetings","speak.s2.desc":"Presented on blockchain applications for UN Sustainable Development Goals","speak.s3.desc":"International jury member, Barcelona, Spain","speak.s4.desc":"Blockchain survival TV show judge, Asian Economic TV (2018)","speak.s5.desc":"Industry judge for Korea's blockchain data innovation competition","speak.s6.desc":"Co-initiated global women blockchain leaders program with UN Futures Forum","speak.s7.desc":"Mentor & angel investor backing Bitcoin-native startups",
+        "media.label":"In the Media","media.title":"Featured Coverage & Interviews",
+        "media.m1.title":"\u201cOur goal is to become a full-service digital asset financial group \u2014 brokerage, custody, and asset management\u201d","media.m1.desc":"In-depth interview on Hanbitco's strategy to mirror Coinbase's institutional-grade approach in the Korean market.",
+        "media.m2.outlet":"Financial News","media.m2.title":"\u201cFinancial experts lead Hanbitco to spearhead virtual asset legislation\u201d","media.m2.desc":"Feature on Hanbitco's role in driving Korea's Special Financial Information Act as a top-tier compliance-focused exchange.",
+        "media.m3.title":"\u201cWe'll bring new users into crypto through a mass adoption strategy\u201d","media.m3.desc":"CEO interview on Hanbitco's pivot to a consumer-friendly exchange with UX innovation and cross-industry partnerships.",
+        "media.m4.outlet":"Paxnet News","media.m4.title":"\u201cHanbitco appoints Kim Sung-a as co-CEO \u2014 focused on Special Financial Information Act\u201d","media.m4.desc":"Coverage of leadership transition and the exchange's strategic commitment to regulatory compliance.",
         "edu.label":"Education","edu.title":"Academic Background","edu.detail":"Seoul, South Korea",
-        "contact.label":"Contact","contact.title":"Let's Connect","contact.desc":"Open to conversations about digital asset policy, regulatory frameworks, and industry collaboration."
+        "contact.label":"Contact","contact.title":"Let's Work Together","contact.desc":"Open to speaking invitations, advisory engagements, policy research collaborations, and conversations about the future of digital assets.",
+        "contact.t1":"Digital Asset Policy","contact.t2":"Regulatory Strategy","contact.t3":"Exchange Governance","contact.t4":"Speaking Engagements","contact.t5":"Cross-border Advisory"
       },
       ko: {
-        "nav.about":"소개","nav.experience":"경력","nav.ventures":"사업","nav.speaking":"강연","nav.contact_btn":"연락하기",
-        "hero.badge":"디지털 자산 정책 개척자",
-        "hero.subtitle":"국제디지털자산정책연구원(IDAPI) 설립자. 2015년부터 한국의 디지털 자산 규제 환경을 형성해 온 1세대 정책 전문가.",
-        "hero.cta":"연락하기","hero.cta2":"경력 보기",
-        "about.label":"소개","about.title":"디지털 자산 분야의 정책과 산업을 잇다",
-        "about.p1":"한국 디지털 자산 산업의 제도화에 참여해 온 1세대 정책 전문가입니다. 2015년 암호화폐 거래소에서 경력을 시작하여, 산업 형성기의 핵심 시장 인프라에서 현장 경험을 쌓았습니다.",
-        "about.p2":"한국블록체인협회 설립에 참여하여 규제 프레임워크와 디지털 자산 정책 방향에 대한 초기 논의에 관여했습니다. 또한 가상자산 정책 태스크포스 내 거래소위원회 위원장을 맡아 산업 참여자와 정책 입안자 간의 실무 대화를 이끌었습니다.",
-        "about.p3":"이러한 산업·정책 경험을 바탕으로 국제디지털자산정책연구원(IDAPI)을 설립하여, 글로벌 기준과 한국의 규제 환경을 연결하고 일관성 있는 정책 개발을 지원하고 있습니다.",
-        "about.stat1":"비트코이너","about.stat2":"블록체인 경력","about.stat3":"한국 최초 여성 암호화폐 거래소 CEO","about.stat4":"KBA 위원장 재임",
-        "exp.label":"경력","exp.title":"커리어 여정",
-        "exp.t1.date":"현재","exp.t1.role":"설립자","exp.t1.company":"국제디지털자산정책연구원 (IDAPI)","exp.t1.desc":"국내 규제 프레임워크와 국제 동향을 연결하는 연구 및 정책 대화를 주도. 글로벌 기준과 한국 규제 환경의 가교 역할.",
-        "exp.t2.role":"가상자산위원회 위원","exp.t2.company":"한국회계학회","exp.t2.desc":"한국 회계 전문기관 내 가상자산 회계 기준 및 가이드라인 개발에 기여.",
-        "exp.t3.role":"초대 거래소위원회 위원장","exp.t3.company":"한국블록체인협회","exp.t3.desc":"회원 거래소들의 선출을 통해 취임. 3년간 산업 규제 프레임워크 및 거버넌스 기준 발전을 위한 이니셔티브를 주도.",
-        "exp.t4.role":"거래소위원회 위원장","exp.t4.company":"가상자산 정책 태스크포스","exp.t4.desc":"특정금융정보법 개정에 관한 산업과 정책 입안자 간의 실무 대화를 촉진.",
-        "exp.t5.role":"공동창업자 & CEO","exp.t5.desc":"한국블록체인협회 창립 회원사인 규제 준수 암호화폐 거래소 설립. VASP 라이선스 및 ISO/IEC 27001 보안 인증 취득.",
-        "exp.t6.role":"암호화폐 업계 경력 시작","exp.t6.company":"암호화폐 거래소","exp.t6.desc":"암호화폐 거래소에서 경력을 시작하여, 산업 형성기의 핵심 시장 인프라에서 현장 경험을 축적.",
-        "ven.label":"사업","ven.title":"주요 이니셔티브",
-        "ven.v1.role":"설립자","ven.v1.desc":"국제디지털자산정책연구원 — 글로벌 기준과 한국 규제 환경을 연결. 디지털 자산 거버넌스에 관한 연구 및 정책 대화를 주도.",
-        "ven.v2.role":"공동 설립자","ven.v2.desc":"글로벌 리더들이 모여 암호화폐의 진화 — 정책, 채택, 기관 전략, RWA를 논의하는 한국 최대 비트코인 컨퍼런스.",
-        "ven.v3.role":"공동창업자 & CEO (2017–2022)","ven.v3.desc":"한국블록체인협회 창립 회원사. VASP 라이선스 및 ISO/IEC 27001 보안 인증을 보유한 규제 준수 암호화폐 거래소.",
-        "ven.v4.role":"설립자","ven.v4.desc":"UN 지속가능발전목표 17개 과제에 부합하는 블록체인 비영리 단체 — 블록체인 기술이 글로벌 임팩트를 이끌 수 있는 방안을 탐구.",
-        "speak.label":"강연 & 산업 활동","speak.title":"글로벌 활동",
-        "speak.s1.desc":"한국 최초의 비트코인 컨퍼런스 & 해커톤","speak.s2.name":"유엔 실무회의","speak.s2.desc":"UN 지속가능발전목표를 위한 블록체인","speak.s3.desc":"패널 심사, 스페인","speak.s4.desc":"아시아경제TV, 대한민국","speak.s5.desc":"비트코인 네이티브 스타트업 멘토 & 투자자",
+        "nav.about":"소개","nav.experience":"경력","nav.ventures":"사업","nav.speaking":"강연","nav.media":"미디어","nav.contact_btn":"연락하기",
+        "hero.badge":"창업자 \u00b7 정책 설계자 \u00b7 2015년부터 비트코이너",
+        "hero.tagline":"한국 최초 여성 암호화폐 거래소 CEO, 지금은 아시아의 디지털 자산 정책을 설계합니다.",
+        "hero.subtitle":"국제디지털자산정책연구원(IDAPI) 설립자. 10년간의 산업·정책 현장 경험을 바탕으로 글로벌 규제 기준과 한국의 디지털 자산 환경을 연결합니다.",
+        "hero.cta":"연락하기","hero.cta2":"스토리 보기",
+        "trust.label":"신뢰 기관 & 소속",
+        "trust.t1":"한국블록체인협회","trust.t2":"유엔 (SDG 이니셔티브)","trust.t3":"한국회계학회","trust.t4":"가상자산 정책 태스크포스","trust.t5":"BTCON Seoul",
+        "about.label":"소개","about.title":"크립토와 정책의 교차점에서 보낸 10년",
+        "about.p1":"2015년, 김성아(Sophie)는 대부분의 기관이 암호화폐의 존재조차 인정하지 않던 시기에 이 산업에 뛰어들었습니다. <strong>한빗코</strong>를 공동 창업하여 <strong>한국 최초의 여성 암호화폐 거래소 CEO</strong>가 되었고, VASP 라이선스와 ISO/IEC 27001 인증을 갖춘 규제 준수 플랫폼으로 성장시켰습니다.",
+        "about.p2":"지속 가능한 성장에는 명확한 규칙이 필요하다는 것을 깨닫고 정책으로 전환했습니다. <strong>한국블록체인협회</strong> 설립에 참여했고, <strong>회원 거래소들의 선출을 통해 초대 거래소위원회 위원장</strong>으로 취임하여 3년간 직무를 수행했습니다. 이 기간 동안 한국의 특정금융정보법(특금법) 제정에 핵심적인 역할을 하며, 산업 리더와 정부 규제 기관 사이의 대화를 이끌었습니다.",
+        "about.p3":"현재 <strong>국제디지털자산정책연구원(IDAPI)</strong> 설립자로서 글로벌 규제 기준과 한국 국내 정책의 접점에서 활동하고 있습니다. 국경을 넘나드는 연구, 기관 전략 자문, 그리고 한국 디지털 자산 생태계가 국제 모범 사례에 부합하도록 하는 것이 사명입니다.",
+        "about.quote":"\u201c디지털 자산의 미래는 혁신만이 아니라, 그 주변에 만드는 규칙의 질에 달려 있습니다. 그 규칙이 정보에 기반하고, 공정하며, 글로벌하게 일관성 있도록 만드는 것이 제 미션입니다.\u201d",
+        "about.stat1":"주류가 되기 전부터 크립토에","about.stat2":"최전선에서 쌓은 경험","about.stat3":"한국 최초 여성 암호화폐 거래소 CEO","about.stat4":"선출직 KBA 거래소위원회 위원장 재임",
+        "exp.label":"경력","exp.title":"거래 현장에서 정책 테이블까지",
+        "exp.t1.date":"2024 \u2014 현재","exp.t1.role":"설립자","exp.t1.company":"국제디지털자산정책연구원 (IDAPI)","exp.t1.desc":"한국의 규제 프레임워크와 국제 기준을 연결하는 정책 연구 기관을 설립. 디지털 자산 거버넌스에 관한 국경간 대화를 주도하고, 기관에 규제 전략을 자문하며, 아시아와 글로벌 시장을 잇는 정책 분석을 발간.",
+        "exp.t2.role":"가상자산위원회 위원","exp.t2.company":"한국회계학회","exp.t2.desc":"한국 최초의 가상자산 전문 회계 기준 수립에 기여. 국내 최고 회계 학술 기관이 채택한 분류, 평가, 공시 가이드라인 정립에 참여.",
+        "exp.t3.role":"초대 거래소위원회 위원장","exp.t3.company":"한국블록체인협회","exp.t3.desc":"국내 암호화폐 거래소들의 선출을 통해 협회 핵심 위원회를 이끔. 3년간 업계 전반의 거버넌스 기준, 자율규제 프레임워크를 주도하고 변화하는 법제에 대한 업계 대응을 조율.",
+        "exp.t4.role":"거래소위원회 위원장","exp.t4.company":"가상자산 정책 태스크포스","exp.t4.desc":"한국 최초의 포괄적 암호화폐 규제인 특정금융정보법 개정 협상에서 업계 대표로 활동. 거래소, 규제 기관, 입법자 사이의 합의를 이끌어냄.",
+        "exp.t5.role":"공동창업자 & CEO","exp.t5.desc":"한국의 규제 준수 암호화폐 거래소를 처음부터 구축. VASP 라이선스 확보, ISO/IEC 27001 인증 달성, 한국블록체인협회 창립 회원사로 자리매김.",
+        "exp.t6.role":"암호화폐 업계 진입","exp.t6.company":"암호화폐 거래소","exp.t6.desc":"비트코인 가격이 아직 $300 미만이던 시절, 한국 최초기 암호화폐 거래소에 합류하여 거래소 운영, 컴플라이언스, 시장 인프라에 대한 현장 경험을 축적.",
+        "ven.label":"사업","ven.title":"기업이 아니라 제도를 만듭니다","ven.current":"현재 집중",
+        "ven.v1.role":"설립자","ven.v1.desc":"국제디지털자산정책연구원 \u2014 글로벌 규제 기준과 한국의 디지털 자산 프레임워크를 연결하는 연구·자문 기관. 정책 분석 발간, 국경간 대화 개최, 암호화폐 규제를 탐색하는 기관에 자문 제공.",
+        "ven.v2.role":"공동 설립자","ven.v2.desc":"한국 최고의 비트코인 컨퍼런스 \u2014 글로벌 산업 리더, 정책 입안자, 빌더들이 비트코인의 미래를 논의하는 자리. 기관 채택, 정책, RWA, 거시경제 전략까지.",
+        "ven.v3.role":"공동창업자 & CEO (2017\u20132022)","ven.v3.desc":"기관급 기준으로 구축된 규제 준수 한국 암호화폐 거래소. VASP 라이선스, ISO/IEC 27001 인증, 한국블록체인협회 창립 회원사. 여러 시장 사이클을 거치며 5년간 운영.",
+        "ven.v4.role":"설립자","ven.v4.desc":"유엔 17개 지속가능발전목표에 블록체인 기술을 적용하는 비영리 이니셔티브. UN 실무회의에서 발표하고, 기술자, NGO, 정책 입안자를 소집하여 블록체인의 글로벌 임팩트 가능성을 탐구.",
+        "speak.label":"강연 & 자문","speak.title":"글로벌 무대 & 활동","speak.desc":"주요 국제 포럼에서 디지털 자산 규제, 거래소 거버넌스, 블록체인 정책에 관한 인사이트를 공유하도록 초청받고 있습니다.",
+        "speak.s1.desc":"한국 대표 비트코인 컨퍼런스, 해커톤 & 비트코인 올림픽 공동 설립","speak.s2.name":"유엔 실무회의","speak.s2.desc":"UN 지속가능발전목표를 위한 블록체인 활용 발표","speak.s3.desc":"국제 심사위원, 바르셀로나, 스페인","speak.s4.desc":"블록체인 서바이벌 TV쇼 심사위원, 아시아경제TV (2018)","speak.s5.desc":"한국 블록체인 데이터 혁신 대회 산업 심사위원","speak.s6.desc":"UN미래포럼과 함께 글로벌 여성 블록체인 리더 양성 프로그램 공동 기획","speak.s7.desc":"비트코인 네이티브 스타트업 멘토 & 엔젤 투자자",
+        "media.label":"미디어 보도","media.title":"주요 인터뷰 & 기사",
+        "media.m1.title":"\u201c중개·수탁·운용 다하는 가상자산 금융그룹이 목표\u201d","media.m1.desc":"코인베이스형 기관급 전략으로 한국 시장을 공략하는 한빗코의 비전을 다룬 심층 인터뷰.",
+        "media.m2.outlet":"파이낸셜뉴스","media.m2.title":"\u201c금융 전문가 포진\u2019 한빗코, 가상자산 법제화 리딩\u201d","media.m2.desc":"특정금융정보법 통과를 주도한 컴플라이언스 중심 거래소로서의 한빗코 역할 조명.",
+        "media.m3.title":"\u201c크립토 \u2018대중화\u2019 전략으로 신규 회원 잡을 것\u201d","media.m3.desc":"UX 혁신과 이종 산업 협업을 통한 소비자 친화적 거래소로의 전환 전략 인터뷰.",
+        "media.m4.outlet":"팍스넷뉴스","media.m4.title":"\u201c한빗코, 김성아 공동대표 선임\u2026특금법 \u2018주력\u2019\u201d","media.m4.desc":"리더십 전환과 규제 준수에 대한 전략적 의지를 다룬 보도.",
         "edu.label":"학력","edu.title":"학력 사항","edu.detail":"서울, 대한민국",
-        "contact.label":"연락처","contact.title":"함께 이야기해요","contact.desc":"디지털 자산 정책, 규제 프레임워크, 산업 협력에 관한 대화를 환영합니다."
+        "contact.label":"연락처","contact.title":"함께 만들어갑시다","contact.desc":"강연 초청, 자문 프로젝트, 정책 연구 협력, 그리고 디지털 자산의 미래에 관한 대화를 환영합니다.",
+        "contact.t1":"디지털 자산 정책","contact.t2":"규제 전략","contact.t3":"거래소 거버넌스","contact.t4":"강연 초청","contact.t5":"국경간 자문"
       },
       ja: {
-        "nav.about":"紹介","nav.experience":"経歴","nav.ventures":"事業","nav.speaking":"講演","nav.contact_btn":"お問い合わせ",
-        "hero.badge":"デジタル資産政策のパイオニア",
-        "hero.subtitle":"国際デジタル資産政策研究所（IDAPI）創設者。2015年から韓国のデジタル資産規制環境を形成してきた第一世代の政策専門家。",
-        "hero.cta":"お問い合わせ","hero.cta2":"経歴を見る",
-        "about.label":"紹介","about.title":"デジタル資産分野の政策と産業を繋ぐ",
-        "about.p1":"韓国のデジタル資産産業の制度化に参画してきた第一世代の政策専門家です。2015年に暗号資産取引所でキャリアをスタートし、業界黎明期の中核的な市場インフラにおいて現場経験を積みました。",
-        "about.p2":"韓国ブロックチェーン協会の設立に参加し、規制フレームワークやデジタル資産の政策方針に関する初期の議論に関わりました。また、仮想資産政策タスクフォース内の取引所委員会の委員長を務め、業界参加者と政策立案者間の実務対話を推進しました。",
-        "about.p3":"これらの産業・政策経験を基盤に、国際デジタル資産政策研究所（IDAPI）を設立し、グローバルスタンダードと韓国の規制環境を橋渡しし、一貫性のある政策開発を支援しています。",
-        "about.stat1":"ビットコイナー","about.stat2":"ブロックチェーン経験","about.stat3":"韓国初の女性暗号資産取引所CEO","about.stat4":"KBA委員長在任",
-        "exp.label":"経歴","exp.title":"キャリアの歩み",
-        "exp.t1.date":"現在","exp.t1.role":"創設者","exp.t1.company":"国際デジタル資産政策研究所（IDAPI）","exp.t1.desc":"国内の規制フレームワークと国際動向を繋ぐ研究・政策対話を主導。グローバルスタンダードと韓国の規制環境の架け橋。",
-        "exp.t2.role":"仮想資産委員会 委員","exp.t2.company":"韓国会計学会","exp.t2.desc":"韓国の会計専門機関における仮想資産の会計基準・ガイドラインの策定に貢献。",
-        "exp.t3.role":"初代取引所委員会 委員長","exp.t3.company":"韓国ブロックチェーン協会","exp.t3.desc":"会員取引所の選出により就任。3年間にわたり業界の規制フレームワークとガバナンス基準の向上に向けた取り組みを主導。",
-        "exp.t4.role":"取引所委員会 委員長","exp.t4.company":"仮想資産政策タスクフォース","exp.t4.desc":"特定金融情報法の改正に関する産業界と政策立案者間の実務対話を促進。",
-        "exp.t5.role":"共同創業者 & CEO","exp.t5.desc":"韓国ブロックチェーン協会の創設会員企業である規制準拠の暗号資産取引所を設立。VASPライセンスおよびISO/IEC 27001セキュリティ認証を取得。",
-        "exp.t6.role":"暗号資産業界でのキャリア開始","exp.t6.company":"暗号資産取引所","exp.t6.desc":"暗号資産取引所でキャリアをスタートし、業界黎明期の中核的な市場インフラにおいて現場経験を蓄積。",
-        "ven.label":"事業","ven.title":"主要イニシアティブ",
-        "ven.v1.role":"創設者","ven.v1.desc":"国際デジタル資産政策研究所 — グローバルスタンダードと韓国の規制環境を橋渡し。デジタル資産ガバナンスに関する研究・政策対話を主導。",
-        "ven.v2.role":"共同創設者","ven.v2.desc":"世界のリーダーが集い、暗号資産の進化 — 政策、採用、機関戦略、RWAを議論する韓国最大のビットコインカンファレンス。",
-        "ven.v3.role":"共同創業者 & CEO（2017–2022）","ven.v3.desc":"韓国ブロックチェーン協会創設会員企業。VASPライセンスおよびISO/IEC 27001セキュリティ認証を保有する規制準拠の暗号資産取引所。",
-        "ven.v4.role":"創設者","ven.v4.desc":"国連の持続可能な開発目標17項目に沿ったブロックチェーンの非営利団体 — ブロックチェーン技術がグローバルインパクトを推進できる方法を探求。",
-        "speak.label":"講演 & 産業活動","speak.title":"グローバルな活動",
-        "speak.s1.desc":"韓国初のビットコインカンファレンス & ハッカソン","speak.s2.name":"国連実務会議","speak.s2.desc":"国連持続可能な開発目標のためのブロックチェーン","speak.s3.desc":"パネル審査、スペイン","speak.s4.desc":"アジア経済TV、韓国","speak.s5.desc":"ビットコインネイティブスタートアップのメンター＆投資家",
+        "nav.about":"紹介","nav.experience":"経歴","nav.ventures":"事業","nav.speaking":"講演","nav.media":"メディア","nav.contact_btn":"お問い合わせ",
+        "hero.badge":"創業者 \u00b7 政策設計者 \u00b7 2015年からビットコイナー",
+        "hero.tagline":"韓国初の女性暗号資産取引所CEO、現在はアジアのデジタル資産政策を設計。",
+        "hero.subtitle":"国際デジタル資産政策研究所（IDAPI）創設者。10年にわたる産業・政策の最前線での経験を基盤に、グローバルな規制基準と韓国のデジタル資産環境を橋渡し。",
+        "hero.cta":"お問い合わせ","hero.cta2":"ストーリーを読む",
+        "trust.label":"信頼機関 & 所属",
+        "trust.t1":"韓国ブロックチェーン協会","trust.t2":"国連（SDGイニシアティブ）","trust.t3":"韓国会計学会","trust.t4":"仮想資産政策タスクフォース","trust.t5":"BTCON Seoul",
+        "about.label":"紹介","about.title":"クリプトと政策の交差点で過ごした10年",
+        "about.p1":"2015年、ほとんどの機関が暗号資産の存在すら認めていなかった時代に、キム・ソンア（Sophie）は暗号資産業界に飛び込みました。<strong>Hanbitco</strong>を共同設立し、<strong>韓国初の女性暗号資産取引所CEO</strong>となり、VASPライセンスとISO/IEC 27001認証を備えた規制準拠プラットフォームへと育て上げました。",
+        "about.p2":"持続可能な成長には明確なルールが必要だと認識し、政策へと転向。<strong>韓国ブロックチェーン協会</strong>の設立に参画し、<strong>会員取引所の選出により初代取引所委員会委員長</strong>に就任、3年間務めました。この間、韓国の画期的な特定金融情報法の策定において中心的な役割を果たし、業界リーダーと政府規制当局との対話を推進しました。",
+        "about.p3":"現在、<strong>国際デジタル資産政策研究所（IDAPI）</strong>の創設者として、グローバルな規制基準と韓国の国内政策の接点で活動しています。国境を超えた研究、機関戦略の助言、そして韓国のデジタル資産エコシステムが国際的なベストプラクティスに沿って発展するよう尽力しています。",
+        "about.quote":"\u201cデジタル資産の未来は、イノベーションだけでなく、その周りに構築するルールの質にかかっています。そのルールが情報に基づき、公正で、グローバルに一貫性のあるものにすること \u2014 それが私のミッションです。\u201d",
+        "about.stat1":"主流になる前からクリプトの世界へ","about.stat2":"最前線で積んだ年月","about.stat3":"韓国初の女性暗号資産取引所CEO","about.stat4":"選出制KBA取引所委員会委員長の任期",
+        "exp.label":"経歴","exp.title":"取引の現場から政策の議論の場へ",
+        "exp.t1.date":"2024 \u2014 現在","exp.t1.role":"創設者","exp.t1.company":"国際デジタル資産政策研究所（IDAPI）","exp.t1.desc":"韓国の規制フレームワークと国際基準を繋ぐ政策研究機関を設立。デジタル資産ガバナンスに関する国境を超えた対話を主導し、機関に規制戦略を助言し、アジアとグローバル市場を橋渡しする政策分析を発信。",
+        "exp.t2.role":"仮想資産委員会 委員","exp.t2.company":"韓国会計学会","exp.t2.desc":"韓国初の仮想資産に関する専門的な会計基準の策定に貢献。国内トップの会計学術機関が採用した分類、評価、開示のガイドライン策定に参画。",
+        "exp.t3.role":"初代取引所委員会 委員長","exp.t3.company":"韓国ブロックチェーン協会","exp.t3.desc":"韓国の暗号資産取引所の選出により協会の主要委員会を率いる。3年間にわたり業界全体のガバナンス基準、自主規制フレームワークを推進し、変化する法制への業界の対応を調整。",
+        "exp.t4.role":"取引所委員会 委員長","exp.t4.company":"仮想資産政策タスクフォース","exp.t4.desc":"韓国初の包括的な暗号資産規制である特定金融情報法の改正交渉において業界の代表を務める。取引所、規制当局、立法者間の合意を仲介。",
+        "exp.t5.role":"共同創業者 & CEO","exp.t5.desc":"韓国の規制準拠暗号資産取引所をゼロから構築。VASPライセンスを取得し、ISO/IEC 27001認証を達成、韓国ブロックチェーン協会の創設メンバー企業として確立。",
+        "exp.t6.role":"暗号資産業界に参入","exp.t6.company":"暗号資産取引所","exp.t6.desc":"ビットコインがまだ300ドル以下だった時代に韓国最初期の暗号資産取引所に参加。取引所運営、コンプライアンス、市場インフラの最前線で経験を積む。",
+        "ven.label":"事業","ven.title":"企業ではなく制度を創る","ven.current":"現在の注力",
+        "ven.v1.role":"創設者","ven.v1.desc":"国際デジタル資産政策研究所 \u2014 グローバルな規制基準と韓国のデジタル資産フレームワークを橋渡しする研究・助言機関。政策分析の発信、国境を超えた対話の開催、暗号資産規制を航行する機関への助言を実施。",
+        "ven.v2.role":"共同創設者","ven.v2.desc":"韓国最大のビットコインカンファレンス \u2014 グローバルな業界リーダー、政策立案者、ビルダーが集い、機関採用、政策、RWA、マクロ経済戦略までビットコインの未来を議論。",
+        "ven.v3.role":"共同創業者 & CEO（2017\u20132022）","ven.v3.desc":"機関レベルの基準で構築された韓国の規制準拠暗号資産取引所。VASPライセンス、ISO/IEC 27001認証取得。韓国ブロックチェーン協会創設メンバー。複数の市場サイクルを経て5年間運営。",
+        "ven.v4.role":"創設者","ven.v4.desc":"国連の17の持続可能な開発目標にブロックチェーン技術を適用する非営利イニシアティブ。国連実務会議で発表し、技術者、NGO、政策立案者を集めてブロックチェーンのグローバルインパクトの可能性を探求。",
+        "speak.label":"講演 & アドバイザリー","speak.title":"グローバルな舞台 & 活動","speak.desc":"主要な国際フォーラムにて、デジタル資産規制、取引所ガバナンス、ブロックチェーン政策に関するインサイトの共有に招かれています。",
+        "speak.s1.desc":"韓国を代表するビットコインカンファレンス、ハッカソン＆ビットコインオリンピックを共同創設","speak.s2.name":"国連実務会議","speak.s2.desc":"国連持続可能な開発目標のためのブロックチェーン活用を発表","speak.s3.desc":"国際審査員、バルセロナ、スペイン","speak.s4.desc":"ブロックチェーンサバイバルTV番組審査員、アジア経済TV（2018）","speak.s5.desc":"韓国ブロックチェーンデータイノベーションコンペ産業審査員","speak.s6.desc":"国連未来フォーラムと共にグローバル女性ブロックチェーンリーダー育成プログラムを共同企画","speak.s7.desc":"ビットコインネイティブスタートアップのメンター＆エンジェル投資家",
+        "media.label":"メディア報道","media.title":"主要インタビュー＆記事",
+        "media.m1.title":"\u201c仲介・受託・運用すべてを行うデジタル資産金融グループが目標\u201d","media.m1.desc":"コインベース型の機関級戦略で韓国市場に挑むHanbitcoのビジョンを描いた深層インタビュー。",
+        "media.m2.outlet":"ファイナンシャルニュース","media.m2.title":"\u201c金融専門家が集結\u2019Hanbitco、仮想資産法制化をリード\u201d","media.m2.desc":"特定金融情報法の通過を主導したコンプライアンス重視取引所としてのHanbitcoの役割を照明。",
+        "media.m3.title":"\u201cクリプト\u2018大衆化\u2019戦略で新規会員を獲得する\u201d","media.m3.desc":"UXイノベーションと異業種連携による消費者フレンドリーな取引所への転換戦略インタビュー。",
+        "media.m4.outlet":"パクスネットニュース","media.m4.title":"\u201cHanbitco、キム・ソンア共同代表に選任…特金法に\u2018注力\u2019\u201d","media.m4.desc":"リーダーシップ移行と規制遵守への戦略的コミットメントに関する報道。",
         "edu.label":"学歴","edu.title":"学歴","edu.detail":"ソウル、韓国",
-        "contact.label":"連絡先","contact.title":"つながりましょう","contact.desc":"デジタル資産政策、規制フレームワーク、業界連携に関するお話を歓迎します。"
+        "contact.label":"連絡先","contact.title":"一緒に創りましょう","contact.desc":"講演のご依頼、アドバイザリー案件、政策研究の協力、そしてデジタル資産の未来に関する対話を歓迎します。",
+        "contact.t1":"デジタル資産政策","contact.t2":"規制戦略","contact.t3":"取引所ガバナンス","contact.t4":"講演依頼","contact.t5":"クロスボーダー助言"
       },
       zh: {
-        "nav.about":"关于","nav.experience":"经历","nav.ventures":"事业","nav.speaking":"演讲","nav.contact_btn":"联系我",
-        "hero.badge":"数字资产政策先驱",
-        "hero.subtitle":"国际数字资产政策研究所（IDAPI）创始人。自2015年以来塑造韩国数字资产监管格局的第一代政策专家。",
-        "hero.cta":"联系我","hero.cta2":"查看经历",
-        "about.label":"关于","about.title":"连接数字资产领域的政策与产业",
-        "about.p1":"参与韩国数字资产产业制度化建设的第一代政策专家。2015年在加密货币交易所开始职业生涯，在行业形成期的核心市场基础设施中积累了一线经验。",
-        "about.p2":"参与了韩国区块链协会的创立，在监管框架和数字资产政策方向的早期讨论中发挥了重要作用。还担任虚拟资产政策工作组交易所委员会主席，促进了行业参与者与政策制定者之间的实务对话。",
-        "about.p3":"基于产业与政策的双重经验，创立了国际数字资产政策研究所（IDAPI），致力于连接全球标准与韩国监管环境，支持连贯的政策发展。",
-        "about.stat1":"比特币信仰者","about.stat2":"区块链从业年限","about.stat3":"韩国首位女性加密交易所CEO","about.stat4":"KBA主席任期",
-        "exp.label":"经历","exp.title":"职业历程",
-        "exp.t1.date":"现在","exp.t1.role":"创始人","exp.t1.company":"国际数字资产政策研究所（IDAPI）","exp.t1.desc":"主导连接国内监管框架与国际发展的研究与政策对话。搭建全球标准与韩国监管环境之间的桥梁。",
-        "exp.t2.role":"虚拟资产委员会委员","exp.t2.company":"韩国会计学会","exp.t2.desc":"为韩国专业会计机构中虚拟资产的会计准则和指南的制定做出了贡献。",
-        "exp.t3.role":"首任交易所委员会主席","exp.t3.company":"韩国区块链协会","exp.t3.desc":"由会员交易所选举产生。在三年任期内主导推进行业监管框架和治理标准的完善。",
-        "exp.t4.role":"交易所委员会主席","exp.t4.company":"虚拟资产政策工作组","exp.t4.desc":"促进了行业与政策制定者之间关于《特定金融信息法》修订的实务对话。",
-        "exp.t5.role":"联合创始人兼CEO","exp.t5.desc":"创立了韩国区块链协会创始会员企业——合规加密货币交易所。获得VASP许可证和ISO/IEC 27001安全认证。",
-        "exp.t6.role":"加密货币行业起步","exp.t6.company":"加密货币交易所","exp.t6.desc":"在加密货币交易所开始职业生涯，在行业形成期的核心市场基础设施中积累了一线经验。",
-        "ven.label":"事业","ven.title":"重点项目",
-        "ven.v1.role":"创始人","ven.v1.desc":"国际数字资产政策研究所——连接全球标准与韩国监管环境。主导数字资产治理的研究与政策对话。",
-        "ven.v2.role":"联合创始人","ven.v2.desc":"汇聚全球领袖探讨加密货币演进——从政策与采用到机构策略与RWA的韩国顶级比特币大会。",
-        "ven.v3.role":"联合创始人兼CEO（2017–2022）","ven.v3.desc":"韩国区块链协会创始会员企业。持有VASP许可证和ISO/IEC 27001安全认证的合规加密货币交易所。",
-        "ven.v4.role":"创始人","ven.v4.desc":"与联合国17项可持续发展目标相一致的区块链非营利组织——探索区块链技术如何推动全球影响力。",
-        "speak.label":"演讲与行业活动","speak.title":"全球活动",
-        "speak.s1.desc":"韩国首个比特币大会和黑客马拉松","speak.s2.name":"联合国工作会议","speak.s2.desc":"区块链助力联合国可持续发展目标","speak.s3.desc":"评审小组，西班牙","speak.s4.desc":"亚洲经济电视台，韩国","speak.s5.desc":"比特币原生创业公司的导师与投资人",
+        "nav.about":"关于","nav.experience":"经历","nav.ventures":"事业","nav.speaking":"演讲","nav.media":"媒体","nav.contact_btn":"联系我",
+        "hero.badge":"创始人 \u00b7 政策设计者 \u00b7 2015年起的比特币信仰者",
+        "hero.tagline":"韩国首位女性加密货币交易所CEO，现在正在塑造亚洲的数字资产政策。",
+        "hero.subtitle":"国际数字资产政策研究所（IDAPI）创始人。凭借十年产业与政策前线经验，连接全球监管标准与韩国不断演变的数字资产格局。",
+        "hero.cta":"联系我","hero.cta2":"阅读我的故事",
+        "trust.label":"信任机构与合作方",
+        "trust.t1":"韩国区块链协会","trust.t2":"联合国（SDG倡议）","trust.t3":"韩国会计学会","trust.t4":"虚拟资产政策工作组","trust.t5":"BTCON Seoul",
+        "about.label":"关于","about.title":"在加密货币与政策交汇处的十年",
+        "about.p1":"2015年，在大多数机构甚至还未承认加密货币存在的时候，金成雅（Sophie）就踏入了这个行业。她联合创立了<strong>Hanbitco</strong>，成为<strong>韩国首位女性加密货币交易所CEO</strong>，并将其打造为一个拥有VASP牌照和ISO/IEC 27001认证的全面合规平台。",
+        "about.p2":"她认识到可持续增长需要明确的规则，于是转向政策领域。她参与创立了<strong>韩国区块链协会</strong>，并<strong>经会员交易所选举成为首任交易所委员会主席</strong>——任期三年。在此期间，她在韩国具有里程碑意义的《特定金融信息法》的制定中发挥了核心作用，促进了行业领袖与政府监管机构之间的关键对话。",
+        "about.p3":"如今，作为<strong>国际数字资产政策研究所（IDAPI）</strong>的创始人，她在全球监管标准与韩国国内政策框架的交汇处工作——开展跨境研究、为机构提供监管策略咨询，并确保韩国的数字资产生态系统按照国际最佳实践发展。",
+        "about.quote":"\u201c我相信数字资产的未来不仅取决于创新，更取决于我们围绕它构建的规则的质量。我的使命是确保这些规则是知情的、公平的、全球一致的。\u201d",
+        "about.stat1":"在主流之前就进入加密领域","about.stat2":"在前沿领域深耕的年限","about.stat3":"韩国首位女性加密交易所CEO","about.stat4":"当选KBA交易所委员会主席任期",
+        "exp.label":"经历","exp.title":"从交易前线到政策桌前",
+        "exp.t1.date":"2024 \u2014 至今","exp.t1.role":"创始人","exp.t1.company":"国际数字资产政策研究所（IDAPI）","exp.t1.desc":"创立连接韩国监管框架与国际标准的政策研究机构。主导数字资产治理的跨境对话，为机构提供监管策略咨询，发布连接亚洲与全球市场的政策分析。",
+        "exp.t2.role":"虚拟资产委员会委员","exp.t2.company":"韩国会计学会","exp.t2.desc":"参与制定韩国首个虚拟资产专业会计准则。协助确立了该国顶级会计学术机构采纳的分类、估值和披露指南。",
+        "exp.t3.role":"首任交易所委员会主席","exp.t3.company":"韩国区块链协会","exp.t3.desc":"经韩国加密货币交易所选举产生，领导协会旗舰委员会。三年任期内推动全行业治理标准、自律监管框架，并协调行业对不断演变的立法的应对。",
+        "exp.t4.role":"交易所委员会主席","exp.t4.company":"虚拟资产政策工作组","exp.t4.desc":"在韩国首部综合性加密货币法规——《特定金融信息法》修订谈判中担任行业首席代表。在交易所、监管机构和立法者之间促成共识。",
+        "exp.t5.role":"联合创始人兼CEO","exp.t5.desc":"从零开始打造韩国合规加密货币交易所。获得VASP牌照，取得ISO/IEC 27001认证，将Hanbitco确立为韩国区块链协会创始会员企业。",
+        "exp.t6.role":"进入加密货币行业","exp.t6.company":"加密货币交易所","exp.t6.desc":"在比特币价格还不到300美元的时代加入韩国最早期的加密货币交易所，在行业形成期的交易所运营、合规和市场基础设施方面积累了一线经验。",
+        "ven.label":"事业","ven.title":"不只是创建企业，更是构建制度","ven.current":"当前重点",
+        "ven.v1.role":"创始人","ven.v1.desc":"国际数字资产政策研究所——连接全球监管标准与韩国数字资产框架的研究与咨询机构。发布政策分析、举办跨境对话、为应对加密监管的机构提供咨询。",
+        "ven.v2.role":"联合创始人","ven.v2.desc":"韩国顶级比特币大会——汇聚全球行业领袖、政策制定者和建设者，讨论比特币在货币未来中的角色，涵盖机构采用、政策、RWA和宏观经济策略。",
+        "ven.v3.role":"联合创始人兼CEO（2017\u20132022）","ven.v3.desc":"按机构级标准打造的韩国合规加密货币交易所。持有VASP牌照、ISO/IEC 27001认证，韩国区块链协会创始会员。经历多个市场周期运营五年。",
+        "ven.v4.role":"创始人","ven.v4.desc":"将区块链技术应用于联合国17项可持续发展目标的非营利倡议。在联合国工作会议上发表演讲，召集技术专家、非政府组织和政策制定者，探索区块链推动全球影响力的潜力。",
+        "speak.label":"演讲与顾问","speak.title":"全球平台与活动","speak.desc":"受邀在各大国际论坛上分享数字资产监管、交易所治理和区块链政策方面的见解。",
+        "speak.s1.desc":"联合创立韩国旗舰比特币大会、黑客马拉松和比特币奥林匹克","speak.s2.name":"联合国工作会议","speak.s2.desc":"就区块链助力联合国可持续发展目标发表演讲","speak.s3.desc":"国际评审团成员，巴塞罗那，西班牙","speak.s4.desc":"区块链生存电视节目评委，亚洲经济电视台（2018）","speak.s5.desc":"韩国区块链数据创新大赛行业评委","speak.s6.desc":"与联合国未来论坛共同发起全球女性区块链领袖培养计划","speak.s7.desc":"比特币原生创业公司的导师和天使投资人",
+        "media.label":"媒体报道","media.title":"重要采访与报道",
+        "media.m1.title":"\u201c目标是成为集经纪、托管、资管于一体的数字资产金融集团\u201d","media.m1.desc":"深度采访Hanbitco以Coinbase式机构级战略进军韩国市场的愿景。",
+        "media.m2.outlet":"金融新闻","media.m2.title":"\u201c金融专家云集\u2019Hanbitco引领虚拟资产立法\u201d","media.m2.desc":"报道Hanbitco作为合规导向交易所在推动韩国《特定金融信息法》通过中的角色。",
+        "media.m3.title":"\u201c以加密货币\u2018大众化\u2019策略吸引新用户\u201d","media.m3.desc":"关于Hanbitco通过UX创新和跨行业合作转型为消费者友好型交易所的CEO专访。",
+        "media.m4.outlet":"Paxnet新闻","media.m4.title":"\u201cHanbitco任命金成雅为联合CEO…聚焦《特金法》\u201d","media.m4.desc":"报道领导层更迭及交易所对监管合规的战略承诺。",
         "edu.label":"教育","edu.title":"学历背景","edu.detail":"首尔，韩国",
-        "contact.label":"联系方式","contact.title":"保持联系","contact.desc":"欢迎就数字资产政策、监管框架和行业合作进行交流。"
+        "contact.label":"联系方式","contact.title":"携手共创","contact.desc":"欢迎演讲邀请、顾问合作、政策研究协作，以及关于数字资产未来的交流。",
+        "contact.t1":"数字资产政策","contact.t2":"监管策略","contact.t3":"交易所治理","contact.t4":"演讲邀请","contact.t5":"跨境咨询"
       }
     };
-
-    const langMap = {en:'en',ko:'ko',ja:'ja',zh:'zh'};
 
     function setLang(lang) {
       if (!T[lang]) return;
@@ -715,6 +930,8 @@
           if (el.querySelector('svg')) {
             const svg = el.querySelector('svg').outerHTML;
             el.innerHTML = T[lang][key] + svg;
+          } else if (T[lang][key].includes('<strong>')) {
+            el.innerHTML = T[lang][key];
           } else {
             el.textContent = T[lang][key];
           }
